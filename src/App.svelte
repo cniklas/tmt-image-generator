@@ -23,12 +23,12 @@ const generate = async () => {
 	window.scroll(0, 0);
 
 	try {
-		const canvas = await html2canvas(document.querySelector('#canvas'), {backgroundColor: null})
+		const canvas = await html2canvas(document.querySelector('#canvas'), {backgroundColor: null, logging: true})
 		imageGenerated = true
 		const base64image = canvas.toDataURL('image/png')
 		src = base64image
 	} catch(error) {
-		alert(error)
+		console.error(error)
 	}
 }
 </script>
@@ -54,10 +54,8 @@ const generate = async () => {
 
 	<section id="canvas" class:hidden={imageGenerated} on:click={hideInput}>
 		<div id="headline" class:editing={isInputVisible}>
-			<div class="container">
-				<input type="text" class:hidden={!isInputVisible} on:click|stopPropagation bind:this={inputElement} bind:value={headline}>
-				<div class="text" class:hidden={isInputVisible} on:dblclick|stopPropagation={showInput}>{headline}</div>
-			</div>
+			<input type="text" class:hidden={!isInputVisible} on:click|stopPropagation bind:this={inputElement} bind:value={headline}>
+			<div class="text" class:hidden={isInputVisible} on:dblclick|stopPropagation={showInput}>{headline}</div>
 		</div>
 
 		<div id="label">
@@ -135,23 +133,44 @@ const generate = async () => {
 	}
 
 	#headline {
-		margin-left: 4rem;
-		margin-right: 4rem;
-	}
-
-	#headline .container {
-		background-color: #422217;
 		color: #d8b793;
 		min-height: 88px;
+		margin: 0 4rem;
 		padding: 0.9375rem 0 1.5625rem;
-		transform: skew(-22deg);
+		position: relative;
+		z-index: 10;
 		cursor: pointer;
 	}
 
-	#headline.editing .container {
+	#headline::before {
+		content: '';
+		background-color: #422217;
+		transform: skew(-22deg);
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: -1;
+	}
+
+	#headline.editing {
 		cursor: initial;
+	}
+
+	#headline.editing::before {
 		/* filter: brightness(.9) contrast(1.1); */
 		background-color: hsla(15, 48%, 17%, 0.9);
+	}
+
+	#headline input,
+	#headline .text {
+		padding: 0 3rem;
+		font-size: 3rem;
+		font-weight: 500;
+		line-height: 1;
+		text-transform: uppercase;
+		letter-spacing: -0.25px;
 	}
 
 	#headline input {
@@ -160,36 +179,20 @@ const generate = async () => {
 		border: none;
 		border-radius: 0;
 		outline: none;
-		margin-bottom: 0;
-		padding: 0 3rem;
+		margin: 0;
+		text-align: center;
 
 		display: block;
-		width: 100%;
+		width: 80%;
 		width: calc(100vw - 10.5rem);
-		height: 3rem;
-
-		font-size: 3rem;
-		font-weight: 500;
-		line-height: 1;
-		text-transform: uppercase;
-		letter-spacing: -0.25px;
-		text-align: center;
-		transform: skew(22deg);
+		height: 1em;
 	}
 
 	#headline .text {
-		padding: 0 3rem;
-		font-size: 3rem;
-		font-weight: 500;
-		line-height: 1;
-		text-transform: uppercase;
-		letter-spacing: -0.25px;
-		transform: skew(22deg);
 		user-select: none;
 	}
 
 	#label {
-		background-color: #d8b793;
 		color: #422217;
 		margin-bottom: 60px;
 		margin-top: -12px;
@@ -197,7 +200,20 @@ const generate = async () => {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+		position: relative;
+		z-index: 20;
+	}
+
+	#label::before {
+		content: '';
+		background-color: #d8b793;
 		transform: skew(-12deg);
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: -1;
 	}
 
 	#label .text {
@@ -205,7 +221,6 @@ const generate = async () => {
 		font-weight: 500;
 		letter-spacing: -0.25px;
 		padding: 0 2.375rem;
-		margin-top: -8px;
-		transform: skew(12deg);
+		transform: translateY(-4px);
 	}
 </style>
