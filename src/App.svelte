@@ -159,6 +159,7 @@ const generate = async () => {
 		color: inherit;
 		border: none;
 		border-radius: 0;
+		outline: none;
 		margin-bottom: 0;
 		padding: 0 3rem;
 
