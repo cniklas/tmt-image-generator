@@ -126,6 +126,7 @@ const generate = async () => {
 	#canvas {
 		height: 1080px;
 		width: 1920px;
+		margin: 0 auto;
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-end;
