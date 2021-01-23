@@ -1,227 +1,146 @@
 <script>
-import html2canvas from 'html2canvas'
-
-let headline = 'Wachstum in schwierigen Zeiten – unerschütterliches Vertrauen'
-let inputElement
-let isInputVisible = false
-let src = ''
-let imageGenerated = false
-
-const showInput = () => {
-	isInputVisible = true
-
-	setTimeout(() => {
-		inputElement.focus()
-	}, 60)
-}
-
-const hideInput = () => {
-	isInputVisible = false
-}
-
-const generate = async () => {
-	window.scroll(0, 0);
-
-	try {
-		const canvas = await html2canvas(document.querySelector('#canvas'), {backgroundColor: null, logging: true})
-		imageGenerated = true
-		const base64image = canvas.toDataURL('image/png')
-		src = base64image
-	} catch(error) {
-		console.error(error)
-	}
-}
+import TailwindCSS from './components/TailwindCSS.svelte';
 </script>
 
+<TailwindCSS />
+
 <main>
-	<!-- data-html2canvas-ignore -->
-	<div id="controls" class:hidden={imageGenerated}>
-		<button id="camera-button" on:click={generate}>
-			<img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjZmZmZmZmIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjMuMiIvPgogICAgPHBhdGggZD0iTTkgMkw3LjE3IDRINGMtMS4xIDAtMiAuOS0yIDJ2MTJjMCAxLjEuOSAyIDIgMmgxNmMxLjEgMCAyLS45IDItMlY2YzAtMS4xLS45LTItMi0yaC0zLjE3TDE1IDJIOXptMyAxNWMtMi43NiAwLTUtMi4yNC01LTVzMi4yNC01IDUtNSA1IDIuMjQgNSA1LTIuMjQgNS01IDV6Ii8+CiAgICA8cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+Cjwvc3ZnPgo=" alt="">
-		</button>
-
-		<div id="explanations">
-			Bauchbinde doppelklicken, um den Text zu bearbeiten.
-			<br>
-			Kamera-Symbol klicken, um diese Seite in eine Grafik umzuwandeln.
-			<br>
-			Rechtsklick / Kontextmenu → „Speichern unter“, um die Grafik auf dem Gerät zu speichern.
-		</div>
-	</div>
-
-	<!-- data-html2canvas-ignore -->
-	<img id="image-generated" class:hidden={!imageGenerated} {src} alt="">
-
-	<section id="canvas" class:hidden={imageGenerated} on:click={hideInput}>
-		<div id="headline" class:editing={isInputVisible}>
-			<input type="text" class:hidden={!isInputVisible} on:click|stopPropagation bind:this={inputElement} bind:value={headline}>
-			<div class="text" class:hidden={isInputVisible} on:dblclick|stopPropagation={showInput}>{headline}</div>
+	<section class="canvas lower-third mx-auto flex flex-col items-center">
+		<div class="headline text-peach font-semibold relative z-10">
+			<div class="text">Bauchbinde ohne QR-Code</div>
 		</div>
 
-		<div id="label">
-			<div class="text">Thema heute</div>
+		<div class="subtitle text-chocolate font-medium relative z-20">
+			<div class="text">Untertitel ohne QR-Code</div>
+		</div>
+	</section>
+
+
+	<section class="canvas lower-third has-qr-code mx-auto flex flex-col items-center relative">
+		<div class="headline text-peach font-semibold relative z-10">
+			<div class="text">Bauchbinde mit QR-Code</div>
+		</div>
+
+		<div class="subtitle text-chocolate font-medium relative z-20">
+			<div class="text">Untertitel mit QR-Code</div>
+		</div>
+
+		<div class="qr-code-wrapper bg-chocolate">
+			<picture>
+				<img src="https://api.qrserver.com/v1/create-qr-code/?size=144x144&color=f2caa7&bgcolor=733816&margin=0&format=svg&data=Example" alt="">
+			</picture>
+		</div>
+	</section>
+
+
+	<section class="canvas lower-third mx-auto flex flex-col items-baseline">
+		<div class="headline text-peach font-semibold relative z-10">
+			<div class="text">Jobst Bittner</div>
+		</div>
+
+		<div class="subtitle text-chocolate font-medium relative z-20">
+			<div class="text">www.jobstbittner.com</div>
 		</div>
 	</section>
 </main>
 
 <style>
-	#controls {
-		position: fixed;
-		top: 2rem;
-		left: 50%;
-		transform: translateX(-50%);
-		z-index: 1;
-	}
+.canvas {
+	font-family: 'Poppins', sans-serif;
+	font-size: .625rem; /* 10px als font-base */
+	line-height: 1;
+}
 
-	button {
-		cursor: pointer;
-	}
+.lower-third .headline {
+	padding: 1.8em 0;
+}
 
-	#camera-button {
-		border: none;
-		margin: 0 auto;
-		padding: 0;
-		background-image: none;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: 60px;
-		height: 60px;
-		background-color: #1867c0;
-		cursor: pointer;
-		border-radius: 50%;
-		box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
-		transition: background-color 200ms cubic-bezier(.4, 0, .6, 1);
-	}
+.lower-third.items-center .headline {
+	/* margin-left: 5.4em; */
+	/* margin-right: 5.4em; */
+	max-width: 181.2em;
+	padding-left: 5.4em;
+	padding-right: 5.4em;
+}
 
-	#camera-button:hover {
-		background-color: hsla(212, 78%, 42%, 0.82);
-	}
+.lower-third.items-baseline .headline {
+	margin-left: 7.8em;
+	margin-right: 7.8em;
+	padding-left: 4em;
+	padding-right: 4em;
+}
 
-	#camera-button img {
-		max-width: 100%;
-		height: 32px;
-	}
+.lower-third .headline::before,
+.lower-third .subtitle::before {
+	content: '';
+	transform: skew(-18deg);
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: -1;
+}
 
-	#explanations {
-		width: min(calc(100vw - 10.5rem), 30rem);
-		margin-top: 1rem;
-	}
+.lower-third .headline::before {
+	@apply bg-chocolate;
+}
 
-	.hidden {
-		display: none !important;
-	}
+.lower-third .headline .text {
+	/* font-size: calc(6.66667em / 1.342); */
+	font-size: 4.966667em;
+}
 
-	#image-generated {
-		display: block;
-		margin: 0 auto;
-		max-width: 100%;
-	}
-	/*
-	#image-generated[src=''],
-	#image-generated:not([src]) {
-		display: none;
-	} */
+.lower-third .subtitle {
+	margin: -.3em 0 6.5em;
+	padding: 1.5em 0;
+}
 
-	#canvas {
-		height: 1080px;
-		width: 1920px;
-		margin: 0 auto;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-end;
-		align-items: center;
-	}
+.lower-third.items-center .subtitle {
+	/* margin-left: 11.1em; */
+	/* margin-right: 11.1em; */
+	max-width: 169.8em;
+	padding-left: 5.6em;
+	padding-right: 5.6em;
+}
 
-	#headline {
-		color: #d8b793;
-		min-height: 88px;
-		margin: 0 4rem;
-		padding: 0.9375rem 0 1.5625rem;
-		position: relative;
-		z-index: 10;
-		cursor: pointer;
-	}
+.lower-third.items-baseline .subtitle {
+	margin-left: 9em;
+	margin-right: 9em;
+	padding-left: 2.6em;
+	padding-right: 2.6em;
+}
 
-	#headline::before {
-		content: '';
-		background-color: #422217;
-		transform: skew(-22deg);
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		z-index: -1;
-	}
+.lower-third .subtitle::before {
+	@apply bg-peach;
+}
 
-	#headline.editing {
-		cursor: initial;
-	}
+.lower-third .subtitle .text {
+	/* font-size: calc(4.66667em / 1.342); */
+	font-size: 3.5em;
+}
 
-	#headline.editing::before {
-		/* filter: brightness(.9) contrast(1.1); */
-		background-color: hsla(15, 48%, 17%, 0.9);
-	}
+.qr-code-wrapper {
+	position: absolute;
+	width: 17.4em;
+	height: 17.4em;
+	right: 6.5em;
+	bottom: 6.5em;
+	padding: 1.5em;
+}
 
-	#headline input,
-	#headline .text {
-		padding: 0 3rem;
-		font-size: 3rem;
-		font-weight: 500;
-		line-height: 1;
-		text-transform: uppercase;
-		letter-spacing: -0.25px;
-	}
+.qr-code-wrapper img {
+	vertical-align: middle;
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+}
 
-	#headline input {
-		background-color: transparent;
-		color: inherit;
-		border: none;
-		border-radius: 0;
-		outline: none;
-		margin: 0;
-		text-align: center;
+.is-editable {
+	cursor: pointer;
+}
 
-		display: block;
-		width: 80%;
-		width: calc(100vw - 10.5rem);
-		height: 1em;
-	}
-
-	#headline .text {
-		user-select: none;
-	}
-
-	#label {
-		color: #422217;
-		margin-bottom: 60px;
-		margin-top: -12px;
-		min-height: 64px;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		position: relative;
-		z-index: 20;
-	}
-
-	#label::before {
-		content: '';
-		background-color: #d8b793;
-		transform: skew(-12deg);
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		z-index: -1;
-	}
-
-	#label .text {
-		font-size: 2.375rem;
-		font-weight: 500;
-		letter-spacing: -0.25px;
-		padding: 0 2.375rem;
-		transform: translateY(-4px);
-	}
+.is-editable.editing {
+	cursor: initial;
+}
 </style>
