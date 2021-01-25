@@ -42,6 +42,19 @@ import TailwindCSS from './components/TailwindCSS.svelte';
 			<div class="text">www.jobstbittner.com</div>
 		</div>
 	</section>
+
+
+	<section class="canvas golden-ratio mx-auto flex">
+		<div class="layers relative">
+			<div class="headline text-peach font-bold">
+				<div class="text">Lukas 15:25</div>
+			</div>
+
+			<div class="copy text-peach font-medium">
+				<div class="text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum accusamus iure voluptatibus minus sunt temporibus itaque necessitatibus aspernatur, repellendus, autem similique suscipit! Deleniti harum velit dolor, qui nihil numquam voluptate.</div>
+			</div>
+		</div>
+	</section>
 </main>
 
 <style>
@@ -134,6 +147,54 @@ import TailwindCSS from './components/TailwindCSS.svelte';
 	width: 100%;
 	max-width: 100%;
 	height: auto;
+}
+
+.golden-ratio {
+}
+
+.golden-ratio .layers {
+	width: 60.6em;
+	padding: 18.3em 0 11.3em 11.3em;
+}
+
+.golden-ratio .layers::before,
+.golden-ratio .layers::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
+}
+
+.golden-ratio .layers::before {
+	@apply bg-peach;
+	width: 75em;
+}
+
+.golden-ratio .layers::after {
+	@apply bg-chocolate;
+	width: 66.2em;
+}
+
+.golden-ratio .headline,
+.golden-ratio .copy {
+}
+
+.golden-ratio .headline {}
+
+.golden-ratio .headline .text {
+	/* font-size: 5.676194em; */
+	font-size: 5.6em;
+}
+
+.golden-ratio .copy {
+	margin-top: 3.6em;
+}
+
+.golden-ratio .copy .text {
+	font-size: 3.5em;
+	line-height: 1.314285;
 }
 
 .is-editable {
