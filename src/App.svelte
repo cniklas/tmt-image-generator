@@ -1,5 +1,22 @@
 <script>
 import TailwindCSS from './components/TailwindCSS.svelte';
+import html2canvas from 'html2canvas'
+
+let src = ''
+let imageGenerated = false
+
+const generate = async () => {
+	window.scroll(0, 0);
+
+	try {
+		const canvas = await html2canvas(document.body, {backgroundColor: null, useCORS: true, logging: true})
+		imageGenerated = true
+		const base64image = canvas.toDataURL('image/png')
+		src = base64image
+	} catch(error) {
+		console.error(error)
+	}
+}
 </script>
 
 <TailwindCSS />
@@ -46,11 +63,11 @@ import TailwindCSS from './components/TailwindCSS.svelte';
 
 	<section class="canvas golden-ratio mx-auto flex">
 		<div class="layers relative">
-			<div class="headline text-peach font-bold">
+			<div class="headline relative z-20 text-peach font-bold">
 				<div class="text">Lukas 15:25</div>
 			</div>
 
-			<div class="copy text-peach font-medium">
+			<div class="copy relative z-20 text-peach font-medium">
 				<div class="text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum accusamus iure voluptatibus minus sunt temporibus itaque necessitatibus aspernatur, repellendus, autem similique suscipit! Deleniti harum velit dolor, qui nihil numquam voluptate.</div>
 			</div>
 		</div>
@@ -60,7 +77,8 @@ import TailwindCSS from './components/TailwindCSS.svelte';
 <style>
 .canvas {
 	font-family: 'Poppins', sans-serif;
-	font-size: .625rem; /* 10px als font-base */
+	/* 10px als font-base */
+	font-size: .625rem;
 	line-height: 1;
 }
 
@@ -165,19 +183,22 @@ import TailwindCSS from './components/TailwindCSS.svelte';
 	top: 0;
 	bottom: 0;
 	left: 0;
-	z-index: -1;
 }
 
-/* @apply bg-peach; */
 .golden-ratio .layers::before {
-	background-image: linear-gradient(92.015131deg, var(--color-peach) 749px, transparent 750px);
+	@apply bg-peach;
+	transform: skew(-2.015131deg);
+	transform-origin: right top;
 	width: 75em;
+	z-index: 10;
 }
 
-/* @apply bg-chocolate; */
 .golden-ratio .layers::after {
-	background-image: linear-gradient(262.718331deg, transparent 137px, var(--color-chocolate) 138px);
+	@apply bg-chocolate;
+	transform: skew(7.281669deg);
+	transform-origin: right bottom;
 	width: 80em;
+	z-index: 11;
 }
 
 .golden-ratio .headline .text {
