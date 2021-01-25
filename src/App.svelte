@@ -150,6 +150,7 @@ import TailwindCSS from './components/TailwindCSS.svelte';
 }
 
 .golden-ratio {
+	height: 1080px;
 }
 
 .golden-ratio .layers {
@@ -167,21 +168,17 @@ import TailwindCSS from './components/TailwindCSS.svelte';
 	z-index: -1;
 }
 
+/* @apply bg-peach; */
 .golden-ratio .layers::before {
-	@apply bg-peach;
+	background-image: linear-gradient(92.015131deg, var(--color-peach) 749px, transparent 750px);
 	width: 75em;
 }
 
+/* @apply bg-chocolate; */
 .golden-ratio .layers::after {
-	@apply bg-chocolate;
-	width: 66.2em;
+	background-image: linear-gradient(262.718331deg, transparent 137px, var(--color-chocolate) 138px);
+	width: 80em;
 }
-
-.golden-ratio .headline,
-.golden-ratio .copy {
-}
-
-.golden-ratio .headline {}
 
 .golden-ratio .headline .text {
 	/* font-size: 5.676194em; */
