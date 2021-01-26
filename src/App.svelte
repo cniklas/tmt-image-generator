@@ -42,9 +42,9 @@ const generate = async () => {
 			<div class="text">Untertitel mit QR-Code</div>
 		</div>
 
-		<div class="qr-code-wrapper bg-chocolate">
+		<div class="qr-code-wrapper absolute bg-chocolate">
 			<picture>
-				<img src="https://api.qrserver.com/v1/create-qr-code/?size=144x144&color=f2caa7&bgcolor=733816&margin=0&format=svg&data=Example" alt="">
+				<img src="https://api.qrserver.com/v1/create-qr-code/?size=144x144&color=f2caa7&bgcolor=733816&margin=0&format=svg&data=Example" class="align-middle w-full max-w-full" alt="">
 			</picture>
 		</div>
 	</section>
@@ -152,7 +152,6 @@ const generate = async () => {
 }
 
 .qr-code-wrapper {
-	position: absolute;
 	width: 17.4em;
 	height: 17.4em;
 	right: 6.5em;
@@ -161,9 +160,6 @@ const generate = async () => {
 }
 
 .qr-code-wrapper img {
-	vertical-align: middle;
-	width: 100%;
-	max-width: 100%;
 	height: auto;
 }
 
