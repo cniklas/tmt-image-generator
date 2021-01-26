@@ -18,10 +18,10 @@ module.exports = {
 			colors: {
 				// 'light-blue': colors.lightBlue,
 				// cyan: colors.cyan,
-				// chocolate: '#733816',
-				// peach: '#f2caa7'
-				chocolate: 'var(--color-chocolate)',
-				peach: 'var(--color-peach)'
+				chocolate: '#733816',
+				peach: '#f2caa7'
+				// chocolate: 'var(--color-chocolate)',
+				// peach: 'var(--color-peach)'
 			},
 		},
 	},
