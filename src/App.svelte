@@ -1,85 +1,81 @@
 <script>
-import TailwindCSS from './components/TailwindCSS.svelte';
+import TailwindCSS from './components/TailwindCSS.svelte'
+
+import { Router, Link, Route } from 'svelte-routing'
+export let url = ''
+import Center from './routes/Center.svelte'
+import CenterQR from './routes/CenterQR.svelte'
+import Left from './routes/Left.svelte'
+import GoldenRatio from './routes/GoldenRatio.svelte'
+
+
 import html2canvas from 'html2canvas'
 
-let src = ''
 let imageGenerated = false
+let isPainting = false
+let src = ''
 
 const generate = async () => {
 	window.scroll(0, 0);
+	isPainting = true
 
 	try {
-		const canvas = await html2canvas(document.body, {backgroundColor: null, useCORS: true, logging: true})
+		const canvas = await html2canvas(document.querySelector('#canvas'), {backgroundColor: null, useCORS: true, logging: true})
 		imageGenerated = true
-		const base64image = canvas.toDataURL('image/png')
-		src = base64image
+		src = canvas.toDataURL('image/png')
 	} catch(error) {
 		console.error(error)
+	} finally {
+		isPainting = false
 	}
+}
+
+const resetImage = () => {
+	imageGenerated = false
+	isPainting = false
+	src = ''
 }
 </script>
 
 <TailwindCSS />
 
-<main>
-	<section class="canvas lower-third mx-auto flex flex-col items-center">
-		<div class="headline text-peach font-semibold relative z-10">
-			<div class="text">Bauchbinde ohne QR-Code</div>
-		</div>
+<Router url="{url}">
+	<nav id="navigation" class="py-4 flex justify-center font-medium text-gray-900 bg-white _shadow border-t-4 border-pink-600" class:pointer-events-none={isPainting} class:opacity-30={isPainting} data-html2canvas-ignore>
+		<Link to="/" on:click={resetImage}>Bauchbinde</Link>
+		<Link to="center-qr" on:click={resetImage}>Bauchbinde mit QR-Code</Link>
+		<Link to="left" on:click={resetImage}>Sprecher</Link>
+		<Link to="golden-ratio" on:click={resetImage}>Bibelvers</Link>
+	</nav>
 
-		<div class="subtitle text-chocolate font-medium relative z-20">
-			<div class="text">Untertitel ohne QR-Code</div>
-		</div>
-	</section>
+	<button id="camera-button" class="fixed z-50 bottom-6 left-1/2 -translate-x-1/2 flex justify-center items-center cursor-pointer bg-gray-900 hover:bg-gray-800 focus:outline-none shadow-md rounded-full" class:pointer-events-none={isPainting} class:animate-pulse={isPainting} class:hidden={imageGenerated} on:click={generate} data-html2canvas-ignore>
+		<img class="max-w-full h-8 cursor-pointer" src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjZmZmZmZmIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjMuMiIvPgogICAgPHBhdGggZD0iTTkgMkw3LjE3IDRINGMtMS4xIDAtMiAuOS0yIDJ2MTJjMCAxLjEuOSAyIDIgMmgxNmMxLjEgMCAyLS45IDItMlY2YzAtMS4xLS45LTItMi0yaC0zLjE3TDE1IDJIOXptMyAxNWMtMi43NiAwLTUtMi4yNC01LTVzMi4yNC01IDUtNSA1IDIuMjQgNSA1LTIuMjQgNS01IDV6Ii8+CiAgICA8cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+Cjwvc3ZnPgo=" alt="">
+	</button>
 
+	<main class="mt-24">
+		<Route path="/"><Center src={src} imageGenerated={imageGenerated} /></Route>
+		<Route path="center-qr" component="{CenterQR}" src={src} imageGenerated={imageGenerated} />
+		<Route path="left" component="{Left}" src={src} imageGenerated={imageGenerated} />
+		<Route path="golden-ratio" component="{GoldenRatio}" src={src} imageGenerated={imageGenerated} />
+	</main>
+</Router>
 
-	<section class="canvas lower-third has-qr-code mx-auto flex flex-col items-center relative">
-		<div class="headline text-peach font-semibold relative z-10">
-			<div class="text">Bauchbinde mit QR-Code</div>
-		</div>
+<style global>
+button {
+	cursor: pointer;
+}
 
-		<div class="subtitle text-chocolate font-medium relative z-20">
-			<div class="text">Untertitel mit QR-Code</div>
-		</div>
+/* .hidden {
+display: none !important;
+} */
 
-		<div class="qr-code-wrapper absolute bg-chocolate">
-			<picture>
-				<img src="https://api.qrserver.com/v1/create-qr-code/?size=144x144&color=f2caa7&bgcolor=733816&margin=0&format=svg&data=Example" class="align-middle w-full max-w-full" alt="">
-			</picture>
-		</div>
-	</section>
-
-
-	<section class="canvas lower-third mx-auto flex flex-col items-baseline">
-		<div class="headline text-peach font-semibold relative z-10">
-			<div class="text">Jobst Bittner</div>
-		</div>
-
-		<div class="subtitle text-chocolate font-medium relative z-20">
-			<div class="text">www.jobstbittner.com</div>
-		</div>
-	</section>
-
-
-	<section class="canvas golden-ratio mx-auto flex">
-		<div class="layers relative">
-			<div class="headline relative z-20 text-peach font-bold">
-				<div class="text">Lukas 15:25</div>
-			</div>
-
-			<div class="copy relative z-20 text-peach font-medium">
-				<div class="text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum accusamus iure voluptatibus minus sunt temporibus itaque necessitatibus aspernatur, repellendus, autem similique suscipit! Deleniti harum velit dolor, qui nihil numquam voluptate.</div>
-			</div>
-		</div>
-	</section>
-</main>
-
-<style>
 .canvas {
 	font-family: 'Poppins', sans-serif;
 	/* 10px als font-base */
 	font-size: .625rem;
 	line-height: 1;
+
+	/* height: 1080px; */
+	/* width: 1920px; */
 }
 
 .lower-third .headline {
@@ -119,7 +115,24 @@ const generate = async () => {
 
 .lower-third .headline .text {
 	/* font-size: calc(6.66667em / 1.342); */
-	font-size: 4.966667em;
+	/* font-size: 4.966667em; */
+	font-size: 5em;
+}
+
+.lower-third .headline input {
+	/* font-size: 4.966667em; */
+	font-size: 5em;
+	height: 1em;
+}
+
+.lower-third.items-center .headline input {
+	/* width: calc(100vw - 14.75rem); */
+	/* max-width: 105.25rem; */
+}
+
+.lower-third.items-baseline .headline input {
+	width: calc(100vw - 14.75rem);
+	max-width: 105.25rem;
 }
 
 .lower-third .subtitle {
@@ -151,71 +164,28 @@ const generate = async () => {
 	font-size: 3.5em;
 }
 
-.qr-code-wrapper {
-	width: 17.4em;
-	height: 17.4em;
-	right: 6.5em;
-	bottom: 6.5em;
-	padding: 1.5em;
-}
-
-.qr-code-wrapper img {
-	height: auto;
-}
-
-.golden-ratio {
-	height: 1080px;
-}
-
-.golden-ratio .layers {
-	width: 60.6em;
-	padding: 18.3em 0 11.3em 11.3em;
-}
-
-.golden-ratio .layers::before,
-.golden-ratio .layers::after {
-	content: '';
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-}
-
-.golden-ratio .layers::before {
-	@apply bg-peach;
-	transform: skew(-2.015131deg);
-	transform-origin: right top;
-	width: 75em;
-	z-index: 10;
-}
-
-.golden-ratio .layers::after {
-	@apply bg-chocolate;
-	transform: skew(7.281669deg);
-	transform-origin: right bottom;
-	width: 80em;
-	z-index: 11;
-}
-
-.golden-ratio .headline .text {
-	/* font-size: 5.676194em; */
-	font-size: 5.6em;
-}
-
-.golden-ratio .copy {
-	margin-top: 3.6em;
-}
-
-.golden-ratio .copy .text {
-	font-size: 3.5em;
-	line-height: 1.314285;
-}
-
 .is-editable {
 	cursor: pointer;
 }
 
 .is-editable.editing {
 	cursor: initial;
+}
+
+nav a {
+	margin: 0 .625rem;
+}
+
+nav a[aria-current=page] {
+	/* text-decoration: underline; */
+	@apply text-pink-600;
+}
+
+#camera-button {
+	transform: translateX(var(--tw-translate-x));
+	width: 60px;
+	height: 60px;
+	/* box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2); */
+	transition: background-color 200ms cubic-bezier(.4, 0, .6, 1);
 }
 </style>
