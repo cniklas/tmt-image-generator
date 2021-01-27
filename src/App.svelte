@@ -3,9 +3,8 @@ import TailwindCSS from './components/TailwindCSS.svelte'
 
 import { Router, Link, Route } from 'svelte-routing'
 export let url = ''
-import Center from './routes/Center.svelte'
+import CenterOrLeft from './routes/CenterOrLeft.svelte'
 import CenterQR from './routes/CenterQR.svelte'
-import Left from './routes/Left.svelte'
 import GoldenRatio from './routes/GoldenRatio.svelte'
 
 
@@ -52,10 +51,10 @@ const resetImage = () => {
 	</button>
 
 	<main class="mt-24">
-		<Route path="/"><Center src={src} imageGenerated={imageGenerated} /></Route>
-		<Route path="center-qr" component="{CenterQR}" src={src} imageGenerated={imageGenerated} />
-		<Route path="left" component="{Left}" src={src} imageGenerated={imageGenerated} />
-		<Route path="golden-ratio" component="{GoldenRatio}" src={src} imageGenerated={imageGenerated} />
+		<Route path="/"><CenterOrLeft {src} {imageGenerated} /></Route>
+		<Route path="center-qr" component="{CenterQR}" {src} {imageGenerated} />
+		<Route path="left" component="{CenterOrLeft}" isLeft {src} {imageGenerated} />
+		<Route path="golden-ratio" component="{GoldenRatio}" {src} {imageGenerated} />
 	</main>
 </Router>
 
@@ -85,16 +84,8 @@ display: none !important;
 .lower-third.items-center .headline {
 	/* margin-left: 5.4em; */
 	/* margin-right: 5.4em; */
-	max-width: 181.2em;
 	padding-left: 5.4em;
 	padding-right: 5.4em;
-}
-
-.lower-third.items-baseline .headline {
-	margin-left: 7.8em;
-	margin-right: 7.8em;
-	padding-left: 4em;
-	padding-right: 4em;
 }
 
 .lower-third .headline::before,
@@ -130,11 +121,6 @@ display: none !important;
 	/* max-width: 105.25rem; */
 }
 
-.lower-third.items-baseline .headline input {
-	width: calc(100vw - 14.75rem);
-	max-width: 105.25rem;
-}
-
 .lower-third .subtitle {
 	margin: -.3em 0 6.5em;
 	padding: 1.5em 0;
@@ -143,16 +129,8 @@ display: none !important;
 .lower-third.items-center .subtitle {
 	/* margin-left: 11.1em; */
 	/* margin-right: 11.1em; */
-	max-width: 169.8em;
 	padding-left: 5.6em;
 	padding-right: 5.6em;
-}
-
-.lower-third.items-baseline .subtitle {
-	margin-left: 9em;
-	margin-right: 9em;
-	padding-left: 2.6em;
-	padding-right: 2.6em;
 }
 
 .lower-third .subtitle::before {
@@ -162,6 +140,16 @@ display: none !important;
 .lower-third .subtitle .text {
 	/* font-size: calc(4.66667em / 1.342); */
 	font-size: 3.5em;
+}
+
+.lower-third .subtitle input {
+	font-size: 3.5em;
+	height: 1em;
+}
+
+.lower-third.items-center .subtitle input {
+	/* width: calc(100vw - 14.75rem); */
+	/* max-width: 105.25rem; */
 }
 
 .is-editable {
@@ -177,8 +165,9 @@ nav a {
 }
 
 nav a[aria-current=page] {
-	/* text-decoration: underline; */
 	@apply text-pink-600;
+	/* text-decoration: underline; */
+	pointer-events: none;
 }
 
 #camera-button {
