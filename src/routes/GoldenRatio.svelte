@@ -2,18 +2,54 @@
 export let location
 export let imageGenerated = false
 export let src = ''
+
+let headline = '2. Kor 2:17'
+let headlineInput
+let isHeadlineInputVisible = false
+let copy = 'Deshalb ist, wer mit dem Messias vereint ist, eine neue Schöpfung – das Alte ist vergangen; sieh, was gekommen ist, ist frisch und neu!'
+let copyInput
+let isCopyInputVisible = false
+
+const editHeadline = () => {
+	isHeadlineInputVisible = true
+
+	setTimeout(() => {
+		headlineInput.focus()
+	}, 60)
+}
+
+const editCopy = () => {
+	isCopyInputVisible = true
+
+	setTimeout(() => {
+		copyInput.focus()
+	}, 60)
+}
+
+const hideAllInputs = () => {
+	isHeadlineInputVisible = false
+	isCopyInputVisible = false
+}
+
+const onKeyPress = e => {
+	if (e.charCode === 13) {
+		hideAllInputs()
+	}
+}
 </script>
 
-<img class="block mx-auto max-w-full" class:hidden={!imageGenerated} {src} alt="" data-html2canvas-ignore>
+<img id="image-generated" class="block mx-auto max-w-full outline-black" class:hidden={!imageGenerated} {src} alt="" data-html2canvas-ignore>
 
-<section id="canvas" class="canvas golden-ratio mx-auto flex" class:hidden={imageGenerated}>
-	<div class="layers relative">
-		<div class="headline relative z-20 text-peach font-bold">
-			<div class="text">Lukas 15:25</div>
+<section id="canvas" class="golden-ratio mx-auto flex" class:hidden={imageGenerated} on:click={hideAllInputs}>
+	<div class="layers flex flex-col relative">
+		<div class="headline relative z-20 text-peach font-bold is-editable" class:editing={isHeadlineInputVisible} on:dblclick|stopPropagation={editHeadline}>
+			<input type="text" class="h2c-font-offset-6 bg-transparent font-bold focus:outline-none" class:hidden={!isHeadlineInputVisible} on:click|stopPropagation on:keypress={onKeyPress} bind:this={headlineInput} bind:value={headline}>
+			<div class="h2c-font-offset-6 text" class:hidden={isHeadlineInputVisible}>{headline}</div>
 		</div>
 
-		<div class="copy relative z-20 text-peach font-medium">
-			<div class="text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum accusamus iure voluptatibus minus sunt temporibus itaque necessitatibus aspernatur, repellendus, autem similique suscipit! Deleniti harum velit dolor, qui nihil numquam voluptate.</div>
+		<div class="copy flex-1 relative z-20 text-peach font-medium is-editable" class:editing={isCopyInputVisible} on:dblclick|stopPropagation={editCopy}>
+			<textarea class="h2c-font-offset-3 bg-transparent font-medium outline-white" class:hidden={!isCopyInputVisible} on:click|stopPropagation bind:this={copyInput} bind:value={copy}></textarea>
+			<div class="h2c-font-offset-3 text whitespace-pre-line" class:hidden={isCopyInputVisible}>{copy}</div>
 		</div>
 	</div>
 </section>
@@ -58,6 +94,13 @@ export let src = ''
 	font-size: 5.6em;
 }
 
+.golden-ratio .headline input {
+	/* font-size: 5.676194em; */
+	font-size: 5.6em;
+	width: 100%;
+	height: 1em;
+}
+
 .golden-ratio .copy {
 	margin-top: 3.6em;
 }
@@ -65,5 +108,13 @@ export let src = ''
 .golden-ratio .copy .text {
 	font-size: 3.5em;
 	line-height: 1.314285;
+}
+
+.golden-ratio .copy textarea {
+	font-size: 3.5em;
+	line-height: 1.314285;
+	width: 100%;
+	height: 100%;
+	resize: none;
 }
 </style>

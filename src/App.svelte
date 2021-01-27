@@ -19,6 +19,7 @@ const generate = async () => {
 	isPainting = true
 
 	try {
+		// `useCORS: true` wird für die QR-Code-API benötigt
 		const canvas = await html2canvas(document.querySelector('#canvas'), {backgroundColor: null, useCORS: true, logging: true})
 		imageGenerated = true
 		src = canvas.toDataURL('image/png')
@@ -39,18 +40,20 @@ const resetImage = () => {
 <TailwindCSS />
 
 <Router url="{url}">
-	<nav id="navigation" class="py-4 flex justify-center font-medium text-gray-900 bg-white _shadow border-t-4 border-pink-600" class:pointer-events-none={isPainting} class:opacity-30={isPainting} data-html2canvas-ignore>
-		<Link to="/" on:click={resetImage}>Bauchbinde</Link>
-		<Link to="center-qr" on:click={resetImage}>Bauchbinde mit QR-Code</Link>
-		<Link to="left" on:click={resetImage}>Sprecher</Link>
-		<Link to="golden-ratio" on:click={resetImage}>Bibelvers</Link>
-	</nav>
+	<div id="navbar" class="fixed top-0 left-0 w-full z-50" data-html2canvas-ignore>
+		<nav class="flex justify-center py-4 pb-5 font-medium text-gray-900 bg-white _shadow border-t-4 border-pink-600 _sticky _left-0 _w-screen" class:pointer-events-none={isPainting} class:opacity-30={isPainting}>
+			<Link to="/" on:click={resetImage}>Bauchbinde</Link>
+			<Link to="center-qr" on:click={resetImage}>Bauchbinde mit QR-Code</Link>
+			<Link to="left" on:click={resetImage}>Sprecher</Link>
+			<Link to="golden-ratio" on:click={resetImage}>Bibelvers</Link>
+		</nav>
+	</div>
 
-	<button id="camera-button" class="fixed z-50 bottom-6 left-1/2 -translate-x-1/2 flex justify-center items-center cursor-pointer bg-gray-900 hover:bg-gray-800 focus:outline-none shadow-md rounded-full" class:pointer-events-none={isPainting} class:animate-pulse={isPainting} class:hidden={imageGenerated} on:click={generate} data-html2canvas-ignore>
+	<button id="camera-button" class="fixed z-50 bottom-6 __left-1/2 left-6 __-translate-x-1/2 flex justify-center items-center cursor-pointer bg-gray-900 hover:bg-gray-800 rounded-full focus:outline-none" class:pointer-events-none={isPainting} class:animate-pulse={isPainting} class:hidden={imageGenerated} on:click={generate} data-html2canvas-ignore>
 		<img class="max-w-full h-8 cursor-pointer" src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjZmZmZmZmIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjMuMiIvPgogICAgPHBhdGggZD0iTTkgMkw3LjE3IDRINGMtMS4xIDAtMiAuOS0yIDJ2MTJjMCAxLjEuOSAyIDIgMmgxNmMxLjEgMCAyLS45IDItMlY2YzAtMS4xLS45LTItMi0yaC0zLjE3TDE1IDJIOXptMyAxNWMtMi43NiAwLTUtMi4yNC01LTVzMi4yNC01IDUtNSA1IDIuMjQgNSA1LTIuMjQgNS01IDV6Ii8+CiAgICA8cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+Cjwvc3ZnPgo=" alt="">
 	</button>
 
-	<main class="mt-24">
+	<main class="_mt-24 mt-16">
 		<Route path="/"><CenterOrLeft {src} {imageGenerated} /></Route>
 		<Route path="center-qr" component="{CenterQR}" {src} {imageGenerated} />
 		<Route path="left" component="{CenterOrLeft}" isLeft {src} {imageGenerated} />
@@ -63,18 +66,55 @@ button {
 	cursor: pointer;
 }
 
-/* .hidden {
-display: none !important;
+.is-editable {
+	cursor: pointer;
+}
+
+.is-editable.editing {
+	cursor: initial;
+}
+
+.h2c-font-offset-3 {
+	transform: translateY(-3px);
+}
+
+.h2c-font-offset-6 {
+	transform: translateY(-6px);
+}
+/*
+#navbar {
+	width: 1920px;
 } */
 
-.canvas {
+nav a {
+	margin: 0 .625rem;
+}
+
+nav a[aria-current=page] {
+	@apply text-pink-600;
+	pointer-events: none;
+}
+
+#camera-button {
+	/* transform: translateX(var(--tw-translate-x)); */
+	width: 60px;
+	height: 60px;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+	transition: background-color 200ms cubic-bezier(.4, 0, .6, 1);
+}
+
+#image-generated {
+	cursor: grab;
+}
+
+#canvas {
 	font-family: 'Poppins', sans-serif;
 	/* 10px als font-base */
 	font-size: .625rem;
 	line-height: 1;
 
-	/* height: 1080px; */
-	/* width: 1920px; */
+	height: 1080px;
+	width: 1920px;
 }
 
 .lower-third .headline {
@@ -116,11 +156,6 @@ display: none !important;
 	height: 1em;
 }
 
-.lower-third.items-center .headline input {
-	/* width: calc(100vw - 14.75rem); */
-	/* max-width: 105.25rem; */
-}
-
 .lower-third .subtitle {
 	margin: -.3em 0 6.5em;
 	padding: 1.5em 0;
@@ -145,36 +180,5 @@ display: none !important;
 .lower-third .subtitle input {
 	font-size: 3.5em;
 	height: 1em;
-}
-
-.lower-third.items-center .subtitle input {
-	/* width: calc(100vw - 14.75rem); */
-	/* max-width: 105.25rem; */
-}
-
-.is-editable {
-	cursor: pointer;
-}
-
-.is-editable.editing {
-	cursor: initial;
-}
-
-nav a {
-	margin: 0 .625rem;
-}
-
-nav a[aria-current=page] {
-	@apply text-pink-600;
-	/* text-decoration: underline; */
-	pointer-events: none;
-}
-
-#camera-button {
-	transform: translateX(var(--tw-translate-x));
-	width: 60px;
-	height: 60px;
-	/* box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2); */
-	transition: background-color 200ms cubic-bezier(.4, 0, .6, 1);
 }
 </style>
