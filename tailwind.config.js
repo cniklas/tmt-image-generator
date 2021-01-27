@@ -20,8 +20,6 @@ module.exports = {
 				// cyan: colors.cyan,
 				chocolate: '#733816',
 				peach: '#f2caa7'
-				// chocolate: 'var(--color-chocolate)',
-				// peach: 'var(--color-peach)'
 			},
 		},
 	},
