@@ -38,9 +38,9 @@ const onKeyPress = e => {
 }
 </script>
 
-<img id="image-generated" class="block mx-auto max-w-full outline-black" class:hidden={!imageGenerated} {src} alt="" data-html2canvas-ignore>
+<img id="image-generated" class="block mx-auto max-w-full" class:hidden={!imageGenerated} {src} alt="" data-html2canvas-ignore>
 
-<section id="canvas" class="golden-ratio mx-auto flex" class:hidden={imageGenerated} on:click={hideAllInputs}>
+<section id="canvas" class="golden-ratio mx-auto flex overflow-auto" class:hidden={imageGenerated} on:click={hideAllInputs}>
 	<div class="layers flex flex-col relative">
 		<div class="headline relative z-20 text-peach font-bold is-editable" class:editing={isHeadlineInputVisible} on:dblclick|stopPropagation={editHeadline}>
 			<input type="text" class="h2c-font-offset-6 bg-transparent font-bold focus:outline-none" class:hidden={!isHeadlineInputVisible} on:click|stopPropagation on:keypress={onKeyPress} bind:this={headlineInput} bind:value={headline}>

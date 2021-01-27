@@ -39,7 +39,7 @@ const onKeyPress = e => {
 }
 </script>
 
-<img id="image-generated" class="block mx-auto max-w-full outline-black" class:hidden={!imageGenerated} {src} alt="" data-html2canvas-ignore>
+<img id="image-generated" class="block mx-auto max-w-full" class:hidden={!imageGenerated} {src} alt="" data-html2canvas-ignore>
 
 <section id="canvas" class="lower-third mx-auto flex flex-col justify-end" class:items-center={!isLeft} class:items-baseline={isLeft} class:hidden={imageGenerated} on:click={hideAllInputs}>
 	<div class="headline text-peach font-semibold relative z-10 is-editable" class:editing={isHeadlineInputVisible} on:dblclick|stopPropagation={editHeadline}>

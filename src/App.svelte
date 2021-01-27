@@ -41,7 +41,7 @@ const resetImage = () => {
 
 <Router url="{url}">
 	<div id="navbar" class="fixed top-0 left-0 w-full z-50" data-html2canvas-ignore>
-		<nav class="flex justify-center py-4 pb-5 font-medium text-gray-900 bg-white _shadow border-t-4 border-pink-600 _sticky _left-0 _w-screen" class:pointer-events-none={isPainting} class:opacity-30={isPainting}>
+		<nav class="flex justify-center py-4 pb-5 font-medium text-gray-900 bg-white border-t-4 border-pink-600" class:pointer-events-none={isPainting} class:opacity-30={isPainting}>
 			<Link to="/" on:click={resetImage}>Bauchbinde</Link>
 			<Link to="center-qr" on:click={resetImage}>Bauchbinde mit QR-Code</Link>
 			<Link to="left" on:click={resetImage}>Sprecher</Link>
@@ -49,11 +49,11 @@ const resetImage = () => {
 		</nav>
 	</div>
 
-	<button id="camera-button" class="fixed z-50 bottom-6 __left-1/2 left-6 __-translate-x-1/2 flex justify-center items-center cursor-pointer bg-gray-900 hover:bg-gray-800 rounded-full focus:outline-none" class:pointer-events-none={isPainting} class:animate-pulse={isPainting} class:hidden={imageGenerated} on:click={generate} data-html2canvas-ignore>
+	<button id="camera-button" class="fixed top-2.5 left-2.5 w-12 h-12 z-50 flex justify-center items-center cursor-pointer bg-gray-900 hover:bg-gray-800 rounded-full focus:outline-none" class:pointer-events-none={isPainting} class:animate-pulse={isPainting} class:hidden={imageGenerated} on:click={generate} data-html2canvas-ignore>
 		<img class="max-w-full h-8 cursor-pointer" src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjZmZmZmZmIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjMuMiIvPgogICAgPHBhdGggZD0iTTkgMkw3LjE3IDRINGMtMS4xIDAtMiAuOS0yIDJ2MTJjMCAxLjEuOSAyIDIgMmgxNmMxLjEgMCAyLS45IDItMlY2YzAtMS4xLS45LTItMi0yaC0zLjE3TDE1IDJIOXptMyAxNWMtMi43NiAwLTUtMi4yNC01LTVzMi4yNC01IDUtNSA1IDIuMjQgNSA1LTIuMjQgNS01IDV6Ii8+CiAgICA8cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+Cjwvc3ZnPgo=" alt="">
 	</button>
 
-	<main class="_mt-24 mt-16">
+	<main class="mt-16">
 		<Route path="/"><CenterOrLeft {src} {imageGenerated} /></Route>
 		<Route path="center-qr" component="{CenterQR}" {src} {imageGenerated} />
 		<Route path="left" component="{CenterOrLeft}" isLeft {src} {imageGenerated} />
@@ -81,10 +81,6 @@ button {
 .h2c-font-offset-6 {
 	transform: translateY(-6px);
 }
-/*
-#navbar {
-	width: 1920px;
-} */
 
 nav a {
 	margin: 0 .625rem;
@@ -96,9 +92,6 @@ nav a[aria-current=page] {
 }
 
 #camera-button {
-	/* transform: translateX(var(--tw-translate-x)); */
-	width: 60px;
-	height: 60px;
 	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
 	transition: background-color 200ms cubic-bezier(.4, 0, .6, 1);
 }
