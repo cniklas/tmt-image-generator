@@ -39,17 +39,17 @@ const onKeyPress = e => {
 }
 </script>
 
-<img class="block mx-auto max-w-full" class:hidden={!imageGenerated} {src} alt="" data-html2canvas-ignore>
+<img id="image-generated" class="block mx-auto max-w-full outline-black" class:hidden={!imageGenerated} {src} alt="" data-html2canvas-ignore>
 
-<section id="canvas" class="canvas lower-third mx-auto flex flex-col" class:items-center={!isLeft} class:items-baseline={isLeft} class:hidden={imageGenerated} on:click={hideAllInputs}>
+<section id="canvas" class="lower-third mx-auto flex flex-col justify-end" class:items-center={!isLeft} class:items-baseline={isLeft} class:hidden={imageGenerated} on:click={hideAllInputs}>
 	<div class="headline text-peach font-semibold relative z-10 is-editable" class:editing={isHeadlineInputVisible} on:dblclick|stopPropagation={editHeadline}>
-		<input type="text" class="bg-transparent font-semibold focus:outline-none" class:text-center={!isLeft} class:hidden={!isHeadlineInputVisible} on:click|stopPropagation on:keypress={onKeyPress} bind:this={headlineInput} bind:value={headline}>
-		<div class="text" class:hidden={isHeadlineInputVisible}>{headline}</div>
+		<input type="text" class="h2c-font-offset-6 bg-transparent font-semibold focus:outline-none" class:text-center={!isLeft} class:hidden={!isHeadlineInputVisible} on:click|stopPropagation on:keypress={onKeyPress} bind:this={headlineInput} bind:value={headline}>
+		<div class="h2c-font-offset-6 text" class:hidden={isHeadlineInputVisible}>{headline}</div>
 	</div>
 
 	<div class="subtitle text-chocolate font-medium relative z-20 is-editable" class:editing={isSubtitleInputVisible} on:dblclick|stopPropagation={editSubtitle}>
-		<input type="text" class="bg-transparent font-medium focus:outline-none" class:text-center={!isLeft} class:hidden={!isSubtitleInputVisible} on:click|stopPropagation on:keypress={onKeyPress} bind:this={subtitleInput} bind:value={subtitle}>
-		<div class="text" class:hidden={isSubtitleInputVisible}>{subtitle}</div>
+		<input type="text" class="h2c-font-offset-3 bg-transparent font-medium focus:outline-none" class:text-center={!isLeft} class:hidden={!isSubtitleInputVisible} on:click|stopPropagation on:keypress={onKeyPress} bind:this={subtitleInput} bind:value={subtitle}>
+		<div class="h2c-font-offset-3 text" class:hidden={isSubtitleInputVisible}>{subtitle}</div>
 	</div>
 </section>
 
