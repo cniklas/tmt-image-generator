@@ -1,5 +1,5 @@
 <script>
-export let location
+// export let location
 export let imageGenerated = false
 export let src = ''
 
@@ -66,17 +66,17 @@ const onKeyPress = e => {
 		<div class="h2c-font-offset-3 text" class:hidden={isSubtitleInputVisible}>{subtitle}</div>
 	</div>
 
-	<div class="qr-code-wrapper absolute bg-chocolate is-editable" class:editing={isQrCodeInputVisible} on:dblclick|stopPropagation={editQrCode}>
+	<div class="qr-code-wrapper absolute bg-chocolate text-peach is-editable" class:editing={isQrCodeInputVisible} on:dblclick|stopPropagation={editQrCode}>
 		{#if qrCode}
 			<picture>
 				<img src="https://api.qrserver.com/v1/create-qr-code/?size=144x144&color=f2caa7&bgcolor=733816&margin=0&format=svg&data={qrCode}" class="align-middle w-full max-w-full" alt="">
 			</picture>
 		{:else}
-			<div class="qr-placeholder absolute left-1/2 top-1/2 text-4xl text-peach">QR-Code</div>
+			<div class="qr-placeholder absolute left-1/2 top-1/2 text-4xl">QR-Code</div>
 		{/if}
 	</div>
 
-	<div class="qr-input-wrapper absolute left-1/2 bottom-3 text-xl" data-html2canvas-ignore>
+	<div class="qr-input-wrapper absolute left-1/2 bottom-60 text-xl" data-html2canvas-ignore>
 		<input type="text" placeholder="URL eingeben" class="w-96 px-2 py-1 border-b-2 border-gray-800 focus:outline-none placeholder-gray-300" class:hidden={!isQrCodeInputVisible} on:click|stopPropagation on:keypress={onKeyPress} bind:this={qrCodeInput} bind:value={qrCodeValue}>
 	</div>
 </section>
@@ -106,6 +106,11 @@ const onKeyPress = e => {
 	right: 6.5em;
 	bottom: 6.5em;
 	padding: 1.5em;
+}
+
+.qr-code-wrapper:hover {
+	outline: 2px dashed currentColor;
+	outline-offset: -1.3em;
 }
 
 .qr-placeholder {

@@ -62,6 +62,12 @@ const resetImage = () => {
 </Router>
 
 <style global>
+@media (min-width: 1920px) {
+	body {
+		overflow-x: hidden;
+	}
+}
+
 button {
 	cursor: pointer;
 }
@@ -135,6 +141,13 @@ nav a[aria-current=page] {
 
 .lower-third .headline::before {
 	@apply bg-chocolate;
+}
+
+.headline:hover .text,
+.copy:hover .text,
+.subtitle:hover .text {
+	outline: 2px dashed currentColor;
+	outline-offset: 2px;
 }
 
 .lower-third .headline .text {

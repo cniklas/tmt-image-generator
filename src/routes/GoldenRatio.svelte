@@ -1,5 +1,5 @@
 <script>
-export let location
+// export let location
 export let imageGenerated = false
 export let src = ''
 
@@ -108,6 +108,7 @@ const onKeyPress = e => {
 .golden-ratio .copy .text {
 	font-size: 3.5em;
 	line-height: 1.314285;
+	height: 100%;
 }
 
 .golden-ratio .copy textarea {
