@@ -48,7 +48,7 @@ const onKeyPress = e => {
 		</div>
 
 		<div class="copy flex-1 relative z-20 text-peach font-medium is-editable" class:editing={isCopyInputVisible} on:dblclick|stopPropagation={editCopy}>
-			<textarea class="h2c-font-offset-3 bg-transparent font-medium outline-white" class:hidden={!isCopyInputVisible} on:click|stopPropagation bind:this={copyInput} bind:value={copy}></textarea>
+			<textarea class="h2c-font-offset-3 bg-transparent font-medium" class:hidden={!isCopyInputVisible} on:click|stopPropagation bind:this={copyInput} bind:value={copy}></textarea>
 			<div class="h2c-font-offset-3 text whitespace-pre-line" class:hidden={isCopyInputVisible}>{copy}</div>
 		</div>
 	</div>

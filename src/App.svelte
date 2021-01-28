@@ -144,8 +144,9 @@ nav a[aria-current=page] {
 }
 
 .headline:hover .text,
+.subtitle:hover .text,
 .copy:hover .text,
-.subtitle:hover .text {
+.copy textarea {
 	outline: 2px dashed currentColor;
 	outline-offset: 2px;
 }
