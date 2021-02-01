@@ -46,6 +46,7 @@ const resetImage = () => {
 			<Link to="center-qr" on:click={resetImage}>Bauchbinde mit QR-Code</Link>
 			<Link to="left" on:click={resetImage}>Sprecher</Link>
 			<Link to="golden-ratio" on:click={resetImage}>Bibelvers</Link>
+			<Link to="golden-ratio-right" on:click={resetImage}>Bibelvers, rechts</Link>
 		</nav>
 	</div>
 
@@ -58,6 +59,7 @@ const resetImage = () => {
 		<Route path="center-qr" component="{CenterQR}" {src} {imageGenerated} />
 		<Route path="left" component="{CenterOrLeft}" isLeft {src} {imageGenerated} />
 		<Route path="golden-ratio" component="{GoldenRatio}" {src} {imageGenerated} />
+		<Route path="golden-ratio-right" component="{GoldenRatio}" isFlipped {src} {imageGenerated} />
 	</main>
 </Router>
 

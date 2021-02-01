@@ -1,5 +1,6 @@
 <script>
 // export let location
+export let isFlipped = false
 export let imageGenerated = false
 export let src = ''
 
@@ -40,7 +41,7 @@ const onKeyPress = e => {
 
 <img id="image-generated" class="block mx-auto max-w-full" class:hidden={!imageGenerated} {src} alt="" data-html2canvas-ignore>
 
-<section id="canvas" class="golden-ratio mx-auto flex overflow-auto" class:hidden={imageGenerated} on:click={hideAllInputs}>
+<section id="canvas" class="golden-ratio mx-auto flex __overflow-auto overflow-x-hidden" class:is-flipped={isFlipped} class:hidden={imageGenerated} on:click={hideAllInputs}>
 	<div class="layers flex flex-col relative">
 		<div class="headline relative z-20 text-peach font-bold is-editable" class:editing={isHeadlineInputVisible} on:dblclick|stopPropagation={editHeadline}>
 			<input type="text" class="h2c-font-offset-6 bg-transparent font-bold focus:outline-none" class:hidden={!isHeadlineInputVisible} on:click|stopPropagation on:keypress={onKeyPress} bind:this={headlineInput} bind:value={headline}>
@@ -55,10 +56,6 @@ const onKeyPress = e => {
 </section>
 
 <style>
-.golden-ratio {
-	height: 1080px;
-}
-
 .golden-ratio .layers {
 	width: 60.6em;
 	padding: 18.3em 0 11.3em 11.3em;
@@ -118,4 +115,30 @@ const onKeyPress = e => {
 	height: 100%;
 	resize: none;
 }
+
+.golden-ratio.is-flipped {
+	justify-content: flex-end;
+}
+
+.golden-ratio.is-flipped .layers {
+	padding-left: 0;
+	padding-right: 11.3em;
+}
+
+.golden-ratio.is-flipped .layers::before,
+.golden-ratio.is-flipped .layers::after {
+	left: auto;
+	right: 0;
+}
+
+.golden-ratio.is-flipped .layers::before {
+	transform: skew(2.015131deg);
+	/* transform-origin: left top; */
+}
+
+.golden-ratio.is-flipped .layers::after {
+	transform: skew(-7.281669deg);
+	/* transform-origin: left bottom; */
+}
+
 </style>
