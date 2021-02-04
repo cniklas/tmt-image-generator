@@ -4,6 +4,7 @@ export let isFlipped = false
 export let imageGenerated = false
 export let src = ''
 
+let filename = ''
 let headline = '2. Kor 2:17'
 let headlineInput
 let isHeadlineInputVisible = false
@@ -30,6 +31,7 @@ const editCopy = () => {
 const hideAllInputs = () => {
 	isHeadlineInputVisible = false
 	isCopyInputVisible = false
+	filename = headline.trim().replace(/[^a-z0-9\-\s]/gi, '').substr(0, 16).trim() + '.png'
 }
 
 const onKeyPress = e => {
@@ -39,7 +41,9 @@ const onKeyPress = e => {
 }
 </script>
 
-<img id="image-generated" class="block mx-auto max-w-full" class:hidden={!imageGenerated} {src} alt="" data-html2canvas-ignore>
+<a href={src} download={filename} class:hidden={!imageGenerated} data-html2canvas-ignore>
+	<img class="block mx-auto max-w-full" {src} alt="">
+</a>
 
 <section id="canvas" class="golden-ratio mx-auto flex __overflow-auto overflow-x-hidden" class:is-flipped={isFlipped} class:hidden={imageGenerated} on:click={hideAllInputs}>
 	<div class="layers flex flex-col relative">
