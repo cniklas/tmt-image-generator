@@ -4,13 +4,14 @@ export let isFlipped = false
 export let imageGenerated = false
 export let src = ''
 
-let filename = ''
 let headline = '2. Kor 2:17'
 let headlineInput
 let isHeadlineInputVisible = false
 let copy = 'Deshalb ist, wer mit dem Messias vereint ist, eine neue Schöpfung – das Alte ist vergangen; sieh, was gekommen ist, ist frisch und neu!'
 let copyInput
 let isCopyInputVisible = false
+
+$: filename = headline.trim().replace(/[^a-z0-9\-\s]/gi, '').substr(0, 16).trim() + '.png'
 
 const editHeadline = () => {
 	isHeadlineInputVisible = true
@@ -31,7 +32,6 @@ const editCopy = () => {
 const hideAllInputs = () => {
 	isHeadlineInputVisible = false
 	isCopyInputVisible = false
-	filename = headline.trim().replace(/[^a-z0-9\-\s]/gi, '').substr(0, 16).trim() + '.png'
 }
 
 const onKeyPress = e => {

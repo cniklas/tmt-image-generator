@@ -3,13 +3,14 @@
 export let imageGenerated = false
 export let src = ''
 
-let filename = ''
 let headline = 'Bauchbinde mit QR-Code'
 let headlineInput
 let isHeadlineInputVisible = false
 let subtitle = 'Untertitel mit QR-Code'
 let subtitleInput
 let isSubtitleInputVisible = false
+
+$: filename = headline.trim().replace(/[^a-z0-9\-\s]/gi, '').substr(0, 16).trim() + '.png'
 
 let qrCode = ''
 let qrCodeValue = ''
@@ -45,7 +46,6 @@ const hideAllInputs = () => {
 	isSubtitleInputVisible = false
 	isQrCodeInputVisible = false
 	qrCode = qrCodeValue
-	filename = headline.trim().replace(/[^a-z0-9\-\s]/gi, '').substr(0, 16).trim() + '.png'
 }
 
 const onKeyPress = e => {

@@ -4,13 +4,14 @@ export let isLeft = false
 export let imageGenerated = false
 export let src = ''
 
-let filename = ''
 let headline = isLeft ? 'Sprecher' : 'Bauchbinde ohne QR-Code'
 let headlineInput
 let isHeadlineInputVisible = false
 let subtitle = isLeft ? 'www.maschdeslebens.org' : 'Untertitel ohne QR-Code'
 let subtitleInput
 let isSubtitleInputVisible = false
+
+$: filename = headline.trim().replace(/[^a-z0-9\-\s]/gi, '').substr(0, 16).trim() + '.png'
 
 const editHeadline = () => {
 	isHeadlineInputVisible = true
@@ -31,7 +32,6 @@ const editSubtitle = () => {
 const hideAllInputs = () => {
 	isHeadlineInputVisible = false
 	isSubtitleInputVisible = false
-	filename = headline.trim().replace(/[^a-z0-9\-\s]/gi, '').substr(0, 16).trim() + '.png'
 }
 
 const onKeyPress = e => {
