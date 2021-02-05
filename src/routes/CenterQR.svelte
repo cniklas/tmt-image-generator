@@ -6,7 +6,7 @@ export let src = ''
 let headline = 'Bauchbinde mit QR-Code'
 let headlineInput
 let isHeadlineInputVisible = false
-let subtitle = 'Untertitel mit QR-Code'
+let subtitle = 'Untertitel'
 let subtitleInput
 let isSubtitleInputVisible = false
 
