@@ -55,7 +55,7 @@ const onKeyPress = e => {
 }
 </script>
 
-<a href={src} download={filename} class:hidden={!imageGenerated} data-html2canvas-ignore>
+<a href={src} download={filename} id="download-link" class="relative block mx-auto max-w-full" class:hidden={!imageGenerated} data-html2canvas-ignore>
 	<img class="block mx-auto max-w-full" {src} alt="">
 </a>
 
