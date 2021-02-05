@@ -44,9 +44,9 @@ const resetImage = () => {
 		<nav class="flex justify-center py-4 pb-5 font-medium text-gray-900 bg-white border-t-4 border-pink-600" class:pointer-events-none={isPainting} class:opacity-30={isPainting}>
 			<Link to="/" on:click={resetImage}>Bauchbinde</Link>
 			<Link to="center-qr" on:click={resetImage}>Bauchbinde mit QR-Code</Link>
-			<Link to="left" on:click={resetImage}>Sprecher</Link>
-			<Link to="golden-ratio" on:click={resetImage}>Bibelvers</Link>
-			<Link to="golden-ratio-right" on:click={resetImage}>Bibelvers, rechts</Link>
+			<Link to="left" on:click={resetImage}>Bauchbinde, links</Link>
+			<Link to="block" on:click={resetImage}>Textblock</Link>
+			<Link to="block-right" on:click={resetImage}>Textblock, rechts</Link>
 		</nav>
 	</div>
 
@@ -58,8 +58,8 @@ const resetImage = () => {
 		<Route path="/"><CenterOrLeft {src} {imageGenerated} /></Route>
 		<Route path="center-qr" component="{CenterQR}" {src} {imageGenerated} />
 		<Route path="left" component="{CenterOrLeft}" isLeft {src} {imageGenerated} />
-		<Route path="golden-ratio" component="{GoldenRatio}" {src} {imageGenerated} />
-		<Route path="golden-ratio-right" component="{GoldenRatio}" isFlipped {src} {imageGenerated} />
+		<Route path="block" component="{GoldenRatio}" {src} {imageGenerated} />
+		<Route path="block-right" component="{GoldenRatio}" isFlipped {src} {imageGenerated} />
 	</main>
 </Router>
 
