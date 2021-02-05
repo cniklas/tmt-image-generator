@@ -4,10 +4,10 @@ export let isFlipped = false
 export let imageGenerated = false
 export let src = ''
 
-let headline = '2. Kor 2:17'
+let headline = 'Headline'
 let headlineInput
 let isHeadlineInputVisible = false
-let copy = 'Deshalb ist, wer mit dem Messias vereint ist, eine neue Schöpfung – das Alte ist vergangen; sieh, was gekommen ist, ist frisch und neu!'
+let copy = 'Dies ist ein Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen.'
 let copyInput
 let isCopyInputVisible = false
 
