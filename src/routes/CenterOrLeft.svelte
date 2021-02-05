@@ -4,10 +4,10 @@ export let isLeft = false
 export let imageGenerated = false
 export let src = ''
 
-let headline = isLeft ? 'Sprecher' : 'Bauchbinde ohne QR-Code'
+let headline = isLeft ? 'Bauchbinde links' : 'Bauchbinde zentriert'
 let headlineInput
 let isHeadlineInputVisible = false
-let subtitle = isLeft ? 'www.maschdeslebens.org' : 'Untertitel ohne QR-Code'
+let subtitle = isLeft ? 'www.website.tld' : 'Untertitel'
 let subtitleInput
 let isSubtitleInputVisible = false
 
