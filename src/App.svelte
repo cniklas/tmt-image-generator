@@ -74,6 +74,21 @@ const resetImage = () => {
 	--btn-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
 }
 
+::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+}
+
+/* @apply rounded; */
+::-webkit-scrollbar-track {
+	background-color: rgba(9,30,66,0.08);
+}
+
+/* @apply rounded; */
+::-webkit-scrollbar-thumb {
+	background-color: #97a0af;
+}
+
 @media (min-width: 1920px) {
 	body {
 		overflow-x: hidden;
@@ -116,7 +131,7 @@ nav a[aria-current=page] {
 #camera-button {
 	box-shadow: var(--btn-box-shadow);
 	transform: translateX(var(--tw-translate-x));
-	transition: background-color 200ms cubic-bezier(.4, 0, .6, 1), transform 144ms ease-out;
+	transition: background-color 200ms cubic-bezier(0.4,0,0.6,1), transform 144ms ease-out;
 }
 
 #camera-button:hover,
