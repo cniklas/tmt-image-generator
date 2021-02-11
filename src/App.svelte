@@ -104,6 +104,10 @@ button {
 	transform: translateY(3px);
 }
 
+.h2c-font-offset-4 {
+	transform: translateY(4px);
+}
+
 nav a {
 	margin: 0 .625rem;
 }
@@ -182,10 +186,8 @@ nav a[aria-current=page] {
 /* .subtitle:hover .text, */
 .subtitle:hover input,
 .subtitle input:focus,
-/* .copy:hover .text, */
-.copy:hover textarea,
-/* .copy textarea { */
-.copy textarea:focus {
+.copy:hover .text,
+.copy textarea {
 	outline: 2px dashed currentColor;
 	/* outline-offset: 2px; */
 	outline-offset: 1px;
@@ -202,7 +204,6 @@ nav a[aria-current=page] {
 } */
 
 .lower-third .headline input {
-	/* font-size: 4.966667em; */
 	font-size: 5em;
 	/* height: 1em; */
 	height: 1.28em; /* 64px */

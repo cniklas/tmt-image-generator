@@ -50,8 +50,8 @@ const leaveQrCode = () => {
 
 const hideAllInputs = () => {
 	// isHeadlineInputVisible = false
-	// isSubtitleInputVisible = false
 	headlineInput.blur()
+	// isSubtitleInputVisible = false
 	subtitleInput.blur()
 	// isQrCodeInputVisible = false
 	// qrCode = qrCodeValue

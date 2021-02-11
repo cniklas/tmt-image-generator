@@ -9,7 +9,7 @@ let headlineInput
 // let isHeadlineInputVisible = false
 let copy = 'Dies ist ein Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen.'
 let copyInput
-// let isCopyInputVisible = false
+let isCopyInputVisible = false
 
 $: filename = headline.trim().replace(/[^a-z0-9\-\s]/gi, '').substr(0, 16).trim() + '.png'
 
@@ -21,19 +21,25 @@ $: filename = headline.trim().replace(/[^a-z0-9\-\s]/gi, '').substr(0, 16).trim(
 // 	}, 60)
 // }
 
-// const editCopy = () => {
-// 	isCopyInputVisible = true
+const editCopy = () => {
+	isCopyInputVisible = true
 
-// 	setTimeout(() => {
-// 		copyInput.focus()
-// 	}, 60)
-// }
+	setTimeout(() => {
+		copyInput.focus()
+	}, 60)
+}
+
+const leaveCopy = () => {
+	if (isCopyInputVisible) {
+		isCopyInputVisible = false
+	}
+}
 
 const hideAllInputs = () => {
 	// isHeadlineInputVisible = false
-	// isCopyInputVisible = false
 	headlineInput.blur()
-	copyInput.blur()
+	// isCopyInputVisible = false
+	leaveCopy()
 }
 
 const onKeyPress = e => {
@@ -54,15 +60,12 @@ const onKeyPress = e => {
 			<div class="h2c-font-offset--6 text" class:hidden={isHeadlineInputVisible}>{headline}</div>
 		</div> -->
 		<div class="headline relative z-20 text-peach font-bold">
-			<input type="text" class="h2c-font-offset-3 px-1 bg-transparent font-bold" on:click|stopPropagation on:keypress={onKeyPress} bind:this={headlineInput} bind:value={headline}>
+			<input type="text" class="h2c-font-offset-4 px-1 bg-transparent font-bold" on:click|stopPropagation on:focus={leaveCopy} on:keypress={onKeyPress} bind:this={headlineInput} bind:value={headline}>
 		</div>
 
-		<!-- <div class="copy flex-1 relative z-20 text-peach font-medium is-editable" class:editing={isCopyInputVisible} on:dblclick|stopPropagation={editCopy}>
-			<textarea class="h2c-font-offset--3 bg-transparent font-medium" class:hidden={!isCopyInputVisible} on:click|stopPropagation bind:this={copyInput} bind:value={copy}></textarea>
-			<div class="h2c-font-offset--3 text whitespace-pre-line" class:hidden={isCopyInputVisible}>{copy}</div>
-		</div> -->
-		<div class="copy flex-1 relative z-20 text-peach font-medium">
-			<textarea class="h2c-font-offset-3 px-1 bg-transparent font-medium" on:click|stopPropagation bind:this={copyInput} bind:value={copy}></textarea>
+		<div class="copy flex-1 relative z-20 text-peach font-medium is-editable" class:editing={isCopyInputVisible} on:click|stopPropagation={editCopy}>
+			<textarea class="h2c-font-offset--3 px-1 bg-transparent font-medium" class:hidden={!isCopyInputVisible} on:click|stopPropagation bind:this={copyInput} bind:value={copy}></textarea>
+			<div class="h2c-font-offset--3 px-1 text whitespace-pre-line" class:hidden={isCopyInputVisible}>{copy}</div>
 		</div>
 	</div>
 </section>
@@ -72,7 +75,7 @@ const onKeyPress = e => {
 	/* width: 60.6em; */
 	width: 61em;
 	/* padding: 18.3em 0 11.3em 11.3em; */
-	padding: 17.7em 0 11.3em 10.9em;
+	padding: 17.4em 0 11.3em 10.9em;
 }
 
 .golden-ratio .layers::before,
@@ -111,20 +114,19 @@ const onKeyPress = e => {
 	width: 100%;
 	max-width: 100%;
 	/* height: 1em; */
-	height: 1.2142857em; /* 68px */
+	height: 1.3214285em; /* 74px */
 }
 
 .golden-ratio .copy {
 	/* margin-top: 3.6em; */
-	margin-top: 3em;
+	margin-top: 2.7em;
 }
 
-/*
 .golden-ratio .copy .text {
 	font-size: 3.5em;
 	line-height: 1.314285;
 	height: 100%;
-} */
+}
 
 .golden-ratio .copy textarea {
 	font-size: 3.5em;

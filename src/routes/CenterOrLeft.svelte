@@ -31,8 +31,8 @@ $: filename = headline.trim().replace(/[^a-z0-9\-\s]/gi, '').substr(0, 16).trim(
 
 const hideAllInputs = () => {
 	// isHeadlineInputVisible = false
-	// isSubtitleInputVisible = false
 	headlineInput.blur()
+	// isSubtitleInputVisible = false
 	subtitleInput.blur()
 }
 
