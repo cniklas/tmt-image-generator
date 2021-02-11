@@ -42,7 +42,7 @@ const resetImage = () => {
 <TailwindCSS />
 
 <Router url="{url}">
-	<div id="navbar" class="fixed top-0 left-0 w-full z-50" class:opacity-30={isPainting} data-html2canvas-ignore>
+	<div id="navbar" class="fixed top-0 left-0 w-full z-40" class:opacity-30={isPainting}>
 		<nav class="flex justify-center py-4 pb-5 font-medium text-gray-900 bg-white border-t-4 border-pink-600" class:pointer-events-none={isPainting}>
 			<Link to="/" on:click={resetImage}>Bauchbinde</Link>
 			<Link to="center-qr" on:click={resetImage}>Bauchbinde mit QR-Code</Link>
@@ -51,7 +51,7 @@ const resetImage = () => {
 			<Link to="block-right" on:click={resetImage}>Textblock, rechts</Link>
 		</nav>
 
-		<button id="camera-button" class="absolute top-20 left-1/2 -translate-x-2/4 p-2 flex justify-center items-center cursor-pointer bg-gray-900 hover:bg-gray-800 text-white border-4 border-current rounded-full focus:outline-none" class:hidden={imageGenerated} on:click={generate} data-html2canvas-ignore>
+		<button id="camera-button" class="absolute top-20 left-1/2 -translate-x-2/4 p-2 flex justify-center items-center cursor-pointer bg-gray-900 hover:bg-gray-800 text-white border-4 border-current rounded-full focus:outline-none" class:hidden={imageGenerated} on:click={generate}>
 			<svg class="fill-current w-8" fill="#ffffff" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 				<circle cx="12" cy="12" r="3.2"/>
 				<path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/>
@@ -92,12 +92,20 @@ button {
 	cursor: initial;
 }
 
-.h2c-font-offset-3 {
+.h2c-font-offset--3 {
 	transform: translateY(-3px);
 }
 
-.h2c-font-offset-6 {
+.h2c-font-offset--6 {
 	transform: translateY(-6px);
+}
+
+.h2c-font-offset-3 {
+	transform: translateY(3px);
+}
+
+.h2c-font-offset-4 {
+	transform: translateY(4px);
 }
 
 nav a {
@@ -106,7 +114,6 @@ nav a {
 
 nav a[aria-current=page] {
 	@apply text-pink-600;
-	/* pointer-events: none; */
 }
 
 #navbar {
@@ -146,14 +153,15 @@ nav a[aria-current=page] {
 }
 
 .lower-third .headline {
-	padding: 1.8em 0;
+	/* padding: 1.8em 0; */
+	padding: 1.1em 0;
 }
 
 .lower-third.items-center .headline {
-	/* margin-left: 5.4em; */
-	/* margin-right: 5.4em; */
-	padding-left: 5.4em;
-	padding-right: 5.4em;
+	/* padding-left: 5.4em; */
+	padding-left: 5em;
+	/* padding-right: 5.4em; */
+	padding-right: 5em;
 }
 
 .lower-third .headline::before,
@@ -172,49 +180,60 @@ nav a[aria-current=page] {
 	@apply bg-chocolate;
 }
 
-.headline:hover .text,
-.subtitle:hover .text,
+/* .headline:hover .text, */
+.headline:hover input,
+.headline input:focus,
+/* .subtitle:hover .text, */
+.subtitle:hover input,
+.subtitle input:focus,
 .copy:hover .text,
 .copy textarea {
 	outline: 2px dashed currentColor;
-	outline-offset: 2px;
+	/* outline-offset: 2px; */
+	outline-offset: 1px;
 }
 
-.lower-third .headline .text {
-	/* font-size: calc(6.66667em / 1.342); */
-	/* font-size: 4.966667em; */
-	font-size: 5em;
+.headline input:not(:focus),
+.subtitle input:not(:focus) {
+	cursor: pointer;
 }
+
+/*
+.lower-third .headline .text {
+	font-size: 5em;
+} */
 
 .lower-third .headline input {
-	/* font-size: 4.966667em; */
 	font-size: 5em;
-	height: 1em;
+	/* height: 1em; */
+	height: 1.28em; /* 64px */
 }
 
 .lower-third .subtitle {
 	margin: -.3em 0 6.5em;
-	padding: 1.5em 0;
+	/* padding: 1.5em 0; */
+	padding: .9em 0;
 }
 
 .lower-third.items-center .subtitle {
-	/* margin-left: 11.1em; */
-	/* margin-right: 11.1em; */
-	padding-left: 5.6em;
-	padding-right: 5.6em;
+	/* padding-left: 5.6em; */
+	padding-left: 5.2em;
+	/* padding-right: 5.6em; */
+	padding-right: 5.2em;
 }
 
 .lower-third .subtitle::before {
 	@apply bg-peach;
 }
 
+/*
 .lower-third .subtitle .text {
-	/* font-size: calc(4.66667em / 1.342); */
 	font-size: 3.5em;
-}
+} */
 
 .lower-third .subtitle input {
 	font-size: 3.5em;
-	height: 1em;
+	/* height: 1em; */
+	height: 1.3428571em; /* 47px */
 }
 </style>
