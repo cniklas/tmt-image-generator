@@ -5,10 +5,8 @@ export let src = ''
 
 let headline = 'Bauchbinde mit QR-Code'
 let headlineInput
-// let isHeadlineInputVisible = false
 let subtitle = 'Untertitel'
 let subtitleInput
-// let isSubtitleInputVisible = false
 
 $: filename = headline.trim().replace(/[^a-z0-9\-\s]/gi, '').substr(0, 16).trim() + '.png'
 
@@ -16,22 +14,6 @@ let qrCode = ''
 let qrCodeValue = ''
 let qrCodeInput
 let isQrCodeInputVisible = false
-
-// const editHeadline = () => {
-// 	isHeadlineInputVisible = true
-
-// 	setTimeout(() => {
-// 		headlineInput.focus()
-// 	}, 60)
-// }
-
-// const editSubtitle = () => {
-// 	isSubtitleInputVisible = true
-
-// 	setTimeout(() => {
-// 		subtitleInput.focus()
-// 	}, 60)
-// }
 
 const editQrCode = () => {
 	isQrCodeInputVisible = true
@@ -49,12 +31,8 @@ const leaveQrCode = () => {
 }
 
 const hideAllInputs = () => {
-	// isHeadlineInputVisible = false
 	headlineInput.blur()
-	// isSubtitleInputVisible = false
 	subtitleInput.blur()
-	// isQrCodeInputVisible = false
-	// qrCode = qrCodeValue
 	leaveQrCode()
 }
 
@@ -70,18 +48,10 @@ const onKeyPress = e => {
 </a>
 
 <section id="canvas" class="lower-third has-qr-code mx-auto flex flex-col justify-end items-center relative" class:hidden={imageGenerated} on:click={hideAllInputs}>
-	<!-- <div class="headline text-peach font-semibold relative z-10 is-editable" class:editing={isHeadlineInputVisible} on:dblclick|stopPropagation={editHeadline}>
-		<input type="text" class="h2c-font-offset--6 bg-transparent font-semibold text-center focus:outline-none" class:hidden={!isHeadlineInputVisible} on:click|stopPropagation on:keypress={onKeyPress} bind:this={headlineInput} bind:value={headline}>
-		<div class="h2c-font-offset--6 text" class:hidden={isHeadlineInputVisible}>{headline}</div>
-	</div> -->
 	<div class="headline text-peach font-semibold relative z-10">
 		<input type="text" class="stretchy h2c-font-offset-3 px-1 bg-transparent font-semibold text-center" on:click|stopPropagation on:focus={leaveQrCode} on:keypress={onKeyPress} bind:this={headlineInput} bind:value={headline}>
 	</div>
 
-	<!-- <div class="subtitle text-chocolate font-medium relative z-20 is-editable" class:editing={isSubtitleInputVisible} on:dblclick|stopPropagation={editSubtitle}>
-		<input type="text" class="h2c-font-offset--3 bg-transparent font-medium text-center focus:outline-none" class:hidden={!isSubtitleInputVisible} on:click|stopPropagation on:keypress={onKeyPress} bind:this={subtitleInput} bind:value={subtitle}>
-		<div class="h2c-font-offset--3 text" class:hidden={isSubtitleInputVisible}>{subtitle}</div>
-	</div> -->
 	<div class="subtitle text-chocolate font-medium relative z-20">
 		<input type="text" class="stretchy h2c-font-offset-3 px-1 bg-transparent font-medium text-center" on:click|stopPropagation on:focus={leaveQrCode} on:keypress={onKeyPress} bind:this={subtitleInput} bind:value={subtitle}>
 	</div>
