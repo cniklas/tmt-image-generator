@@ -95,12 +95,14 @@ const onKeyPress = e => {
 
 .golden-ratio .copy {
 	margin-top: 2.7em;
+	max-height: calc(100% - 10.09844em); /* '.headline input' height + margin-top */
 }
 
 .golden-ratio .copy .text {
 	font-size: 3.5em;
 	line-height: 1.314285;
 	height: 100%;
+	overflow-y: hidden;
 }
 
 .golden-ratio .copy textarea {
