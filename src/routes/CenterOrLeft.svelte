@@ -23,8 +23,6 @@ const onKeyPress = e => {
 }
 </script>
 
-<a href="https://tmt-image-generator-v1.netlify.app" id="switch-back" class="fixed top-0 left-0 z-50 bg-gray-900 hover:bg-gray-800 text-white no-underline" class:hidden={isLeft}>zurück zu v1</a>
-
 <a href={src} download={filename} id="download-link" class="relative block mx-auto max-w-full" class:hidden={!imageGenerated}>
 	<img class="block mx-auto max-w-full" {src} alt="">
 </a>
@@ -40,13 +38,6 @@ const onKeyPress = e => {
 </section>
 
 <style>
-#switch-back {
-	padding: .4em 3em;
-	box-shadow: 0 0.1em 0 0.1em rgba(0,0,0,15%);
-	transform: rotate(90deg) translateX(70.71068%) rotate(-90deg) rotate(-45deg) translateY(-100%);
-	transform-origin: 0 0;
-}
-
 .lower-third.items-center .headline {
 	max-width: 181.2em;
 }
