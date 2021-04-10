@@ -18,9 +18,9 @@ let isQrCodeInputVisible = false
 const editQrCode = () => {
 	isQrCodeInputVisible = true
 
-	setTimeout(() => {
+	requestAnimationFrame(() => {
 		qrCodeInput.focus()
-	}, 60)
+	})
 }
 
 const leaveQrCode = () => {

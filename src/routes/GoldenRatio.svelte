@@ -15,9 +15,9 @@ $: filename = headline.trim().replace(/[^a-z0-9\-\s]/gi, '').substr(0, 16).trim(
 const editCopy = () => {
 	isCopyInputVisible = true
 
-	setTimeout(() => {
+	requestAnimationFrame(() => {
 		copyInput.focus()
-	}, 60)
+	})
 }
 
 const leaveCopy = () => {

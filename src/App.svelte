@@ -13,6 +13,7 @@ import html2canvas from 'html2canvas'
 let imageGenerated = false
 let isPainting = false
 let src = ''
+let navbar
 
 const generate = async () => {
 	if (!isPainting) {
@@ -32,23 +33,26 @@ const generate = async () => {
 	}
 }
 
-const resetImage = () => {
+const resetPage = () => {
 	imageGenerated = false
 	isPainting = false
 	src = ''
+
+	window.scroll(0, 0)
+	navbar.focus()
 }
 </script>
 
 <TailwindCSS />
 
 <Router url="{url}">
-	<div id="navbar" class="fixed top-0 left-0 w-full z-40" class:opacity-30={isPainting}>
+	<div id="navbar" bind:this={navbar} class="fixed top-0 left-0 w-full z-40" class:opacity-30={isPainting}>
 		<nav class="flex justify-center py-4 pb-5 font-medium text-gray-900 bg-white border-t-4 border-pink-600" class:pointer-events-none={isPainting}>
-			<Link to="/" on:click={resetImage}>Bauchbinde</Link>
-			<Link to="center-qr" on:click={resetImage}>Bauchbinde mit QR-Code</Link>
-			<Link to="left" on:click={resetImage}>Bauchbinde, links</Link>
-			<Link to="block" on:click={resetImage}>Textblock</Link>
-			<Link to="block-right" on:click={resetImage}>Textblock, rechts</Link>
+			<Link to="/" on:click={resetPage}>Bauchbinde</Link>
+			<Link to="center-qr" on:click={resetPage}>Bauchbinde mit QR-Code</Link>
+			<Link to="left" on:click={resetPage}>Bauchbinde, links</Link>
+			<Link to="block" on:click={resetPage}>Textblock</Link>
+			<Link to="block-right" on:click={resetPage}>Textblock, rechts</Link>
 		</nav>
 
 		<button id="camera-button" class="absolute top-20 left-1/2 -translate-x-2/4 p-2 flex justify-center items-center cursor-pointer bg-gray-900 hover:bg-gray-800 text-white border-4 border-current rounded-full focus:outline-none" class:hidden={imageGenerated} on:click={generate}>
