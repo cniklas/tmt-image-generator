@@ -73,10 +73,17 @@ const resetPage = () => {
 	</main>
 </Router>
 
-<style global>
+<style global lang="postcss">
 :root {
-	--btn-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+	--btn-box-shadow:
+		0 2px 2px 0 rgba(0,0,0,0.14),
+		0 1px 5px 0 rgba(0,0,0,0.12),
+		0 3px 1px -2px rgba(0,0,0,0.2);
 }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background-color: rgba(9,30,66,0.08); }
+::-webkit-scrollbar-thumb { background-color: #97a0af; }
 
 @media (min-width: 1920px) {
 	body {

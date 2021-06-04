@@ -55,7 +55,7 @@ const onKeyPress = e => {
 	</div>
 </section>
 
-<style>
+<style lang="postcss">
 .golden-ratio .layers {
 	width: 61em;
 	padding: 17.4em 0 11.3em 10.9em;
