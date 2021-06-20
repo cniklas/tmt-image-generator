@@ -79,11 +79,18 @@ const resetPage = () => {
 		0 2px 2px 0 rgba(0,0,0,0.14),
 		0 1px 5px 0 rgba(0,0,0,0.12),
 		0 3px 1px -2px rgba(0,0,0,0.2);
+	--scrollbar-thumb-color: hsl(218, 13%, 64%);
+	--scrollbar-track-color: hsla(218, 76%, 15%, 0.08);
 }
 
 ::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background-color: rgba(9,30,66,0.08); }
-::-webkit-scrollbar-thumb { background-color: #97a0af; }
+::-webkit-scrollbar-thumb { background-color: var(--scrollbar-thumb-color); }
+::-webkit-scrollbar-track { background-color: var(--scrollbar-track-color); }
+
+html {
+	scrollbar-width: thin;
+	scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
+}
 
 @media (min-width: 1920px) {
 	body {
