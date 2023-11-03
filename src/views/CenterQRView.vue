@@ -1,0 +1,144 @@
+<script setup lang="ts">
+import { ref, computed } from 'vue'
+import { useHtmlToCanvas } from '@/use/htmlToCanvas'
+
+const { state, createFilename } = useHtmlToCanvas()
+
+const headline = ref('Bauchbinde mit QR-Code')
+const subtitle = ref('Untertitel')
+
+const blurOnEnter = ({ target }: KeyboardEvent) => (target as HTMLInputElement).blur()
+
+const filename = computed(() => createFilename(headline.value))
+
+const qrCode = ref('')
+const qrCodeData = ref('')
+const qrCodeEl = ref<HTMLInputElement | null>(null)
+const isQrCodeInputVisible = ref(false)
+
+const editQrCode = async () => {
+	isQrCodeInputVisible.value = true
+
+	// wait before focussing the input element because otherwise the input keyup event is triggered
+	await new Promise(resolve => setTimeout(resolve, 100))
+	qrCodeEl.value?.focus()
+}
+
+const leaveQrCodeInput = () => {
+	if (!isQrCodeInputVisible.value) return
+
+	isQrCodeInputVisible.value = false
+	qrCodeData.value = qrCode.value
+}
+</script>
+
+<template>
+	<a
+		:href="state.imageSrc"
+		:download="filename"
+		id="download-link"
+		class="relative mx-auto block max-w-full"
+		:class="{ '!hidden': !state.isGenerated }"
+	>
+		<img class="mx-auto block max-w-full" :src="state.imageSrc" alt="" />
+	</a>
+
+	<section
+		id="canvas"
+		class="lower-third relative mx-auto flex flex-col items-center justify-end"
+		:class="{ '!hidden': state.isGenerated }"
+	>
+		<div class="headline text-peach relative z-10 font-semibold">
+			<input
+				v-model="headline"
+				type="text"
+				class="input is-stretchy bg-transparent px-1 font-semibold"
+				:class="{ '!hidden': state.isPainting }"
+				@keyup.enter="blurOnEnter"
+			/>
+			<div class="text h2c-offset px-1" :class="{ '!hidden': !state.isPainting }" style="--h2c-offset: -22px">
+				{{ headline }}
+			</div>
+		</div>
+		<div class="subtitle text-chocolate relative z-20 font-medium">
+			<input
+				v-model="subtitle"
+				type="text"
+				class="input is-stretchy bg-transparent px-1 font-medium"
+				:class="{ '!hidden': state.isPainting }"
+				@keyup.enter="blurOnEnter"
+			/>
+			<div class="text h2c-offset px-1" :class="{ '!hidden': !state.isPainting }" style="--h2c-offset: -15px">
+				{{ subtitle }}
+			</div>
+		</div>
+
+		<button
+			type="button"
+			class="qr-code-button bg-chocolate text-peach absolute text-left"
+			aria-label="URL für QR-Code eingeben"
+			@click="editQrCode"
+		>
+			<img
+				v-if="qrCodeData"
+				:src="`https://api.qrserver.com/v1/create-qr-code/?size=144x144&color=f2caa7&bgcolor=733816&margin=0&format=svg&data=${qrCodeData}`"
+				class="w-full"
+				alt=""
+				width="144"
+				height="144"
+			/>
+			<span
+				v-else
+				class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl after:content-['QR-Code']"
+			/>
+		</button>
+
+		<div class="absolute bottom-60 left-1/2 -translate-x-1/2 text-xl" data-html2canvas-ignore>
+			<input
+				ref="qrCodeEl"
+				v-model="qrCode"
+				type="text"
+				placeholder="URL eingeben"
+				class="w-96 border-b-2 border-gray-800 px-2 py-1 placeholder-gray-300 focus-visible:outline-none"
+				:class="{ '!hidden': !isQrCodeInputVisible }"
+				@keyup.enter="blurOnEnter"
+				@blur="leaveQrCodeInput"
+			/>
+		</div>
+	</section>
+</template>
+
+<style>
+.route-center-qr .headline {
+	max-width: 111.5em;
+}
+
+.route-center-qr .headline .input {
+	/* width: calc(100vw - 8.5rem); /* → `.route-center .headline .input` */
+	max-width: 62.9375rem;
+}
+
+.route-center-qr .subtitle {
+	max-width: 104em;
+}
+
+.route-center-qr .subtitle .input {
+	/* width: calc(100vw - 8.5rem); /* → `.route-center .subtitle .input` */
+	max-width: 58rem;
+}
+
+.qr-code-button {
+	width: 17.4em;
+	height: 17.4em;
+	right: 6.5em;
+	bottom: 6.5em;
+	padding: 1.5em;
+}
+
+.qr-code-button:hover,
+.qr-code-button:focus-visible,
+.qr-code-button:active {
+	outline: 2px dashed currentColor;
+	outline-offset: -1.3em;
+}
+</style>
