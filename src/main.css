@@ -1,0 +1,149 @@
+:root {
+	--button-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+	--scrollbar-thumb-color: hsl(218, 13%, 64%);
+	--scrollbar-track-color: hsla(218, 76%, 15%, 0.08);
+	--h2c-offset: 0;
+}
+
+::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+}
+::-webkit-scrollbar-thumb {
+	background-color: var(--scrollbar-thumb-color);
+}
+::-webkit-scrollbar-track {
+	background-color: var(--scrollbar-track-color);
+}
+
+html {
+	scrollbar-width: thin;
+	scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
+}
+
+@media (min-width: 1920px) {
+	body {
+		overflow-x: hidden;
+	}
+}
+
+:focus-visible,
+button:active {
+	outline: 2px solid currentColor;
+	outline-offset: 2px;
+}
+
+.h2c-offset {
+	transform: translateY(var(--h2c-offset));
+}
+
+[aria-current='page'] {
+	@apply text-pink-600;
+}
+
+#navbar {
+	transition: opacity 300ms ease-in-out;
+}
+
+#camera-button {
+	box-shadow: var(--button-shadow);
+	transform: translateX(var(--un-translate-x));
+	transition:
+		background-color 200ms cubic-bezier(0.4, 0, 0.6, 1),
+		transform 144ms ease-out;
+}
+
+#camera-button:hover,
+#camera-button:focus-visible {
+	transform: translateX(var(--un-translate-x)) scale(1.1);
+}
+
+#camera-button:focus-visible,
+#camera-button:active {
+	outline-color: #111827; /* gray-900 */
+}
+
+#download-link {
+	width: 1920px;
+}
+
+#download-link::after {
+	@apply absolute left-1/2 top-4 rounded-full border-4 border-current bg-gray-800 px-4 py-2.5 text-lg font-medium tracking-wide text-white;
+	content: 'Bild speichern';
+	transform: translateX(-50%);
+	box-shadow: var(--button-shadow);
+}
+
+#canvas {
+	font-family: 'Poppins', sans-serif;
+	/* 10px als font-base */
+	font-size: 0.625rem;
+	line-height: 1;
+
+	height: 1080px;
+	width: 1920px;
+}
+
+.lower-third .headline {
+	padding-block: 1.1em;
+	padding-inline: 5em;
+}
+
+.lower-third .headline::before,
+.lower-third .subtitle::before {
+	@apply absolute inset-0 content-[''];
+	transform: skew(-18deg);
+	z-index: -1;
+}
+
+.lower-third .headline::before {
+	@apply bg-chocolate;
+}
+
+.headline:hover .input,
+.headline .input:focus-visible,
+.subtitle:hover .input,
+.subtitle .input:focus-visible,
+.copy:hover .textarea,
+.copy .textarea:focus-visible {
+	outline: 2px dashed currentColor;
+	outline-offset: 1px;
+}
+
+.headline .input:not(:focus-visible),
+.subtitle .input:not(:focus-visible),
+.copy .textarea:not(:focus-visible) {
+	cursor: pointer;
+}
+
+.lower-third .headline .input,
+.lower-third .headline .text {
+	font-size: 5em;
+	line-height: 1.28; /* 64px */
+}
+
+.lower-third .headline .input {
+	width: max-content;
+	height: 1.28em; /* 64px */
+}
+
+.lower-third .subtitle {
+	margin: -0.3em 0 6.5em;
+	padding-block: 0.9em;
+	padding-inline: 5.2em;
+}
+
+.lower-third .subtitle::before {
+	@apply bg-peach;
+}
+
+.lower-third .subtitle .input,
+.lower-third .subtitle .text {
+	font-size: 3.5em;
+	line-height: 1.3428571; /* 47px */
+}
+
+.lower-third .subtitle .input {
+	width: max-content;
+	height: 1.3428571em; /* 47px */
+}
