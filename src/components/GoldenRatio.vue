@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useHtmlToCanvas } from '@/use/htmlToCanvas'
+import { createFilename, blurOnEnter } from '@/use/helper'
 
-const { state, createFilename } = useHtmlToCanvas()
+const { state } = useHtmlToCanvas()
 
 const headline = ref('Überschrift')
 const copy = ref('Dies ist ein Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen.')
-
-const blurOnEnter = ({ target }: KeyboardEvent) => (target as HTMLInputElement).blur()
 
 const filename = computed(() => createFilename(headline.value))
 </script>

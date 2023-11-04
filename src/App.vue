@@ -31,7 +31,7 @@ const { state, generateImage } = useHtmlToCanvas()
 			type="button"
 			aria-label="Bild generieren"
 			id="camera-button"
-			class="absolute left-1/2 top-20 flex h-14 w-14 -translate-x-1/2 cursor-pointer items-center justify-center rounded-full border-4 border-current bg-gray-900 text-white hover:bg-gray-800"
+			class="absolute left-1/2 top-20 flex h-14 w-14 -translate-x-1/2 items-center justify-center rounded-full border-4 border-current bg-gray-900 text-white hover:bg-gray-800"
 			:class="{ '!hidden': state.isGenerated }"
 			@click="generateImage"
 		>

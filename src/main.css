@@ -110,14 +110,11 @@ button:active {
 	outline-offset: 1px;
 }
 
-.headline .input:not(:focus-visible),
-.subtitle .input:not(:focus-visible),
-.copy .textarea:not(:focus-visible) {
+:is(.input, .textarea):not(:focus-visible) {
 	cursor: pointer;
 }
 
-.lower-third .headline .input,
-.lower-third .headline .text {
+.lower-third .headline :is(.input, .text) {
 	font-size: 5em;
 	line-height: 1.28; /* 64px */
 }
@@ -137,8 +134,7 @@ button:active {
 	@apply bg-peach;
 }
 
-.lower-third .subtitle .input,
-.lower-third .subtitle .text {
+.lower-third .subtitle :is(.input, .text) {
 	font-size: 3.5em;
 	line-height: 1.3428571; /* 47px */
 }

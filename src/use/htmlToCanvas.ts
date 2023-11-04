@@ -30,13 +30,6 @@ const generateImage = async () => {
 	}
 }
 
-const createFilename = (headline: string) =>
-	`${headline
-		.trim()
-		.replace(/[^a-z0-9\-\s]/gi, '')
-		.slice(0, 16)
-		.trim()}.png`
-
 const resetState = () => {
 	state.isPainting = false
 	state.isGenerated = false
@@ -47,6 +40,5 @@ const resetState = () => {
 export const useHtmlToCanvas = () => ({
 	state: readonly(state),
 	generateImage,
-	createFilename,
 	resetState,
 })

@@ -1,17 +1,16 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useHtmlToCanvas } from '@/use/htmlToCanvas'
+import { createFilename, blurOnEnter } from '@/use/helper'
 
 const props = defineProps<{
 	isLeft?: boolean
 }>()
 
-const { state, createFilename } = useHtmlToCanvas()
+const { state } = useHtmlToCanvas()
 
 const headline = ref(props.isLeft ? 'Bauchbinde links' : 'Bauchbinde zentriert')
 const subtitle = ref(props.isLeft ? 'www.website.tld' : 'Untertitel')
-
-const blurOnEnter = ({ target }: KeyboardEvent) => (target as HTMLInputElement).blur()
 
 const filename = computed(() => createFilename(headline.value))
 </script>

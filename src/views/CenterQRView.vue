@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useHtmlToCanvas } from '@/use/htmlToCanvas'
+import { createFilename, blurOnEnter } from '@/use/helper'
 
-const { state, createFilename } = useHtmlToCanvas()
+const { state } = useHtmlToCanvas()
 
 const headline = ref('Bauchbinde mit QR-Code')
 const subtitle = ref('Untertitel')
-
-const blurOnEnter = ({ target }: KeyboardEvent) => (target as HTMLInputElement).blur()
 
 const filename = computed(() => createFilename(headline.value))
 
@@ -90,17 +89,21 @@ const leaveQrCodeInput = () => {
 			<span
 				v-else
 				class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl after:content-['QR-Code']"
+				aria-hidden="true"
 			/>
 		</button>
 
-		<div class="absolute bottom-60 left-1/2 -translate-x-1/2 text-xl" data-html2canvas-ignore>
+		<div
+			class="absolute bottom-60 left-1/2 -translate-x-1/2 text-xl"
+			:class="{ '!hidden': !isQrCodeInputVisible }"
+			data-html2canvas-ignore
+		>
 			<input
 				ref="qrCodeEl"
 				v-model="qrCode"
 				type="text"
-				placeholder="URL eingeben"
-				class="w-96 border-b-2 border-gray-800 px-2 py-1 placeholder-gray-300 focus-visible:outline-none"
-				:class="{ '!hidden': !isQrCodeInputVisible }"
+				placeholder="URL oder Rufnummer"
+				class="w-96 border-b-2 border-gray-800 px-2 py-1 placeholder-gray-500 focus-visible:outline-none"
 				@keyup.enter="blurOnEnter"
 				@blur="leaveQrCodeInput"
 			/>
