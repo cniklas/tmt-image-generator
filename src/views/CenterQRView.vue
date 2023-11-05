@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, watch, onMounted } from 'vue'
 import { useHtmlToCanvas } from '@/use/htmlToCanvas'
-import { createFilename, blurOnEnter } from '@/use/helper'
+import { createFilename, blurOnEnter, resize } from '@/use/helper'
 
 const { state } = useHtmlToCanvas()
 
@@ -29,6 +29,19 @@ const leaveQrCodeInput = () => {
 	isQrCodeInputVisible.value = false
 	qrCodeData.value = qrCode.value
 }
+
+const headlineEl = ref(null)
+const subtitleEl = ref(null)
+onMounted(() => {
+	resize(headlineEl.value)
+	resize(subtitleEl.value)
+})
+watch(headline, () => {
+	resize(headlineEl.value)
+})
+watch(subtitle, () => {
+	resize(subtitleEl.value)
+})
 </script>
 
 <template>
@@ -49,9 +62,10 @@ const leaveQrCodeInput = () => {
 	>
 		<div class="headline text-peach relative z-10 font-semibold">
 			<input
+				ref="headlineEl"
 				v-model="headline"
 				type="text"
-				class="input is-stretchy bg-transparent px-1 font-semibold"
+				class="input bg-transparent px-1 font-semibold"
 				:class="{ '!hidden': state.isPainting }"
 				@keyup.enter="blurOnEnter"
 			/>
@@ -61,9 +75,10 @@ const leaveQrCodeInput = () => {
 		</div>
 		<div class="subtitle text-chocolate relative z-20 font-medium">
 			<input
+				ref="subtitleEl"
 				v-model="subtitle"
 				type="text"
-				class="input is-stretchy bg-transparent px-1 font-medium"
+				class="input bg-transparent px-1 font-medium"
 				:class="{ '!hidden': state.isPainting }"
 				@keyup.enter="blurOnEnter"
 			/>

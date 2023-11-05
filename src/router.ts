@@ -1,9 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import * as Stretchy from 'stretchy'
 import CenterView from './views/CenterView.vue'
 import { useHtmlToCanvas } from './use/htmlToCanvas'
 
-Stretchy.selectors.filter = '.is-stretchy'
 const { resetState } = useHtmlToCanvas()
 
 const router = createRouter({
@@ -40,8 +38,6 @@ const router = createRouter({
 router.afterEach(async () => {
 	resetState()
 	window.scroll(0, 0)
-	await new Promise(resolve => setTimeout(resolve, 40))
-	Stretchy.init()
 })
 
 export default router

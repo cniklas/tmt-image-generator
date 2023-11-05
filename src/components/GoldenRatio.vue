@@ -28,7 +28,7 @@ const filename = computed(() => createFilename(headline.value))
 				<input
 					v-model="headline"
 					type="text"
-					class="input w-full max-w-full bg-transparent px-1 font-bold"
+					class="input w-full bg-transparent px-1 font-bold"
 					:class="{ '!hidden': state.isPainting }"
 					@keyup.enter="blurOnEnter"
 				/>
