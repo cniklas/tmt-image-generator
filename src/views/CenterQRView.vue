@@ -11,7 +11,6 @@ const subtitle = ref('Untertitel')
 const filename = computed(() => createFilename(headline.value))
 
 const qrCode = ref('')
-const qrCodeData = ref('')
 const qrCodeEl = ref<HTMLInputElement | null>(null)
 const isQrCodeInputVisible = ref(false)
 
@@ -21,13 +20,6 @@ const editQrCode = async () => {
 	// wait before focussing the input element because otherwise the input keyup event is triggered
 	await new Promise(resolve => setTimeout(resolve, 100))
 	qrCodeEl.value?.focus()
-}
-
-const leaveQrCodeInput = () => {
-	if (!isQrCodeInputVisible.value) return
-
-	isQrCodeInputVisible.value = false
-	qrCodeData.value = qrCode.value
 }
 
 const headlineEl = ref(null)
@@ -63,7 +55,7 @@ watch(subtitle, () => {
 		<div class="headline text-peach relative z-10 font-semibold">
 			<input
 				ref="headlineEl"
-				v-model="headline"
+				v-model.trim="headline"
 				type="text"
 				class="input bg-transparent px-1 font-semibold"
 				:class="{ '!hidden': state.isPainting }"
@@ -76,7 +68,7 @@ watch(subtitle, () => {
 		<div class="subtitle text-chocolate relative z-20 font-medium">
 			<input
 				ref="subtitleEl"
-				v-model="subtitle"
+				v-model.trim="subtitle"
 				type="text"
 				class="input bg-transparent px-1 font-medium"
 				:class="{ '!hidden': state.isPainting }"
@@ -94,8 +86,8 @@ watch(subtitle, () => {
 			@click="editQrCode"
 		>
 			<img
-				v-if="qrCodeData"
-				:src="`https://api.qrserver.com/v1/create-qr-code/?size=144x144&color=f2caa7&bgcolor=733816&margin=0&format=svg&data=${qrCodeData}`"
+				v-if="qrCode"
+				:src="`https://api.qrserver.com/v1/create-qr-code/?size=144x144&color=f2caa7&bgcolor=733816&margin=0&format=svg&data=${qrCode}`"
 				class="w-full"
 				alt=""
 				width="144"
@@ -115,12 +107,12 @@ watch(subtitle, () => {
 		>
 			<input
 				ref="qrCodeEl"
-				v-model="qrCode"
+				v-model.lazy.trim="qrCode"
 				type="text"
 				placeholder="URL oder Rufnummer"
 				class="w-96 border-b-2 border-gray-800 px-2 py-1 placeholder-gray-500 focus-visible:outline-none"
 				@keyup.enter="blurOnEnter"
-				@blur="leaveQrCodeInput"
+				@blur="isQrCodeInputVisible = false"
 			/>
 		</div>
 	</section>

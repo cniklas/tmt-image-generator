@@ -26,7 +26,7 @@ const filename = computed(() => createFilename(headline.value))
 		<div class="layers relative flex flex-col">
 			<div class="headline text-peach relative z-20 font-bold">
 				<input
-					v-model="headline"
+					v-model.trim="headline"
 					type="text"
 					class="input w-full bg-transparent px-1 font-bold"
 					:class="{ '!hidden': state.isPainting }"

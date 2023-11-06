@@ -47,7 +47,7 @@ watch(subtitle, () => {
 		<div class="headline text-peach relative z-10 font-semibold">
 			<input
 				ref="headlineEl"
-				v-model="headline"
+				v-model.trim="headline"
 				type="text"
 				class="input bg-transparent px-1 font-semibold"
 				:class="{ '!hidden': state.isPainting }"
@@ -64,7 +64,7 @@ watch(subtitle, () => {
 		<div class="subtitle text-chocolate relative z-20 font-medium">
 			<input
 				ref="subtitleEl"
-				v-model="subtitle"
+				v-model.trim="subtitle"
 				type="text"
 				class="input bg-transparent px-1 font-medium"
 				:class="{ '!hidden': state.isPainting }"
