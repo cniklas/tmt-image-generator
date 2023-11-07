@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import DownloadLink from '@/components/DownloadLink.vue'
 import { useHtmlToCanvas } from '@/use/htmlToCanvas'
 import { createFilename, blurOnEnter } from '@/use/helper'
 
@@ -12,17 +13,9 @@ const filename = computed(() => createFilename(headline.value))
 </script>
 
 <template>
-	<a
-		:href="state.imageSrc"
-		:download="filename"
-		id="download-link"
-		class="relative mx-auto block max-w-full"
-		:class="{ '!hidden': !state.isGenerated }"
-	>
-		<img class="mx-auto block max-w-full" :src="state.imageSrc" alt="" />
-	</a>
+	<DownloadLink :class="{ '!hidden': !state.isGenerated }" :image-src="state.imageSrc" :filename="filename" />
 
-	<section id="canvas" class="golden-ratio mx-auto flex overflow-x-hidden" :class="{ '!hidden': state.isGenerated }">
+	<div id="canvas" class="golden-ratio mx-auto flex overflow-x-hidden" :class="{ '!hidden': state.isGenerated }">
 		<div class="layers relative flex flex-col">
 			<div class="headline text-peach relative z-20 font-bold">
 				<input
@@ -52,7 +45,7 @@ const filename = computed(() => createFilename(headline.value))
 				</div>
 			</div>
 		</div>
-	</section>
+	</div>
 </template>
 
 <style lang="postcss">

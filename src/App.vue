@@ -6,7 +6,7 @@ const { state, generateImage } = useHtmlToCanvas()
 </script>
 
 <template>
-	<div id="navbar" class="fixed left-0 top-0 z-40 w-full" :class="{ 'opacity-30': state.isPainting }">
+	<header id="navbar" class="fixed left-0 top-0 z-40 w-full" :class="{ 'opacity-30': state.isPainting }">
 		<nav
 			class="flex justify-center gap-x-5 border-t-4 border-pink-600 bg-white py-4 pb-5 font-medium text-gray-900"
 			:class="{ 'pointer-events-none': state.isPainting }"
@@ -31,7 +31,6 @@ const { state, generateImage } = useHtmlToCanvas()
 			type="button"
 			aria-label="Bild generieren"
 			id="camera-button"
-			class="absolute left-1/2 top-20 flex h-14 w-14 -translate-x-1/2 items-center justify-center rounded-full border-4 border-current bg-gray-900 text-white hover:bg-gray-800"
 			:class="{ '!hidden': state.isGenerated }"
 			@click="generateImage"
 		>
@@ -49,7 +48,7 @@ const { state, generateImage } = useHtmlToCanvas()
 				<path d="M0 0h24v24H0z" fill="none" />
 			</svg>
 		</button>
-	</div>
+	</header>
 
 	<main class="mt-16" :class="`route-${String($route.name)}`">
 		<RouterView />

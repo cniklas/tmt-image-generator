@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, watch, onMounted } from 'vue'
+import DownloadLink from '@/components/DownloadLink.vue'
 import { useHtmlToCanvas } from '@/use/htmlToCanvas'
 import { createFilename, blurOnEnter, resize } from '@/use/helper'
 
@@ -29,17 +30,9 @@ watch(subtitle, () => {
 </script>
 
 <template>
-	<a
-		:href="state.imageSrc"
-		:download="filename"
-		id="download-link"
-		class="relative mx-auto block max-w-full"
-		:class="{ '!hidden': !state.isGenerated }"
-	>
-		<img class="mx-auto block max-w-full" :src="state.imageSrc" alt="" />
-	</a>
+	<DownloadLink :class="{ '!hidden': !state.isGenerated }" :image-src="state.imageSrc" :filename="filename" />
 
-	<section
+	<div
 		id="canvas"
 		class="lower-third mx-auto flex flex-col justify-end"
 		:class="[isLeft ? 'items-baseline' : 'items-center', { '!hidden': state.isGenerated }]"
@@ -78,7 +71,7 @@ watch(subtitle, () => {
 				{{ subtitle }}
 			</div>
 		</div>
-	</section>
+	</div>
 </template>
 
 <style>
