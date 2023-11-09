@@ -44,6 +44,7 @@ watch(subtitle, () => {
 				type="text"
 				class="input bg-transparent px-1 font-semibold"
 				:class="{ '!hidden': state.isPainting }"
+				enterkeyhint="done"
 				@keyup.enter="blurOnEnter"
 			/>
 			<div
@@ -61,6 +62,7 @@ watch(subtitle, () => {
 				type="text"
 				class="input bg-transparent px-1 font-medium"
 				:class="{ '!hidden': state.isPainting }"
+				enterkeyhint="done"
 				@keyup.enter="blurOnEnter"
 			/>
 			<div

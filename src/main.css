@@ -89,11 +89,17 @@ button:active {
 	@apply bg-chocolate;
 }
 
-.headline:hover .input,
+@media (hover: hover) and (pointer: fine) {
+	.headline:hover .input,
+	.subtitle:hover .input,
+	.copy:hover .textarea {
+		outline: 2px dashed currentColor;
+		outline-offset: 1px;
+	}
+}
+
 .headline .input:focus-visible,
-.subtitle:hover .input,
 .subtitle .input:focus-visible,
-.copy:hover .textarea,
 .copy .textarea:focus-visible {
 	outline: 2px dashed currentColor;
 	outline-offset: 1px;

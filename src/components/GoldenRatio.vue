@@ -23,6 +23,7 @@ const filename = computed(() => createFilename(headline.value))
 					type="text"
 					class="input w-full bg-transparent px-1 font-bold"
 					:class="{ '!hidden': state.isPainting }"
+					enterkeyhint="done"
 					@keyup.enter="blurOnEnter"
 				/>
 				<div class="text h2c-offset px-1" :class="{ '!hidden': !state.isPainting }" style="--h2c-offset: -25px">

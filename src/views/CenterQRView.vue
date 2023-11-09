@@ -52,6 +52,7 @@ watch(subtitle, () => {
 				type="text"
 				class="input bg-transparent px-1 font-semibold"
 				:class="{ '!hidden': state.isPainting }"
+				enterkeyhint="done"
 				@keyup.enter="blurOnEnter"
 			/>
 			<div class="text h2c-offset px-1" :class="{ '!hidden': !state.isPainting }" style="--h2c-offset: -22px">
@@ -65,6 +66,7 @@ watch(subtitle, () => {
 				type="text"
 				class="input bg-transparent px-1 font-medium"
 				:class="{ '!hidden': state.isPainting }"
+				enterkeyhint="done"
 				@keyup.enter="blurOnEnter"
 			/>
 			<div class="text h2c-offset px-1" :class="{ '!hidden': !state.isPainting }" style="--h2c-offset: -15px">
@@ -104,6 +106,7 @@ watch(subtitle, () => {
 				type="text"
 				placeholder="URL oder Rufnummer"
 				class="w-96 border-b-2 border-gray-800 px-2 py-1 placeholder-gray-500 focus-visible:outline-none"
+				enterkeyhint="done"
 				@keyup.enter="blurOnEnter"
 				@blur="isQrCodeInputVisible = false"
 			/>
@@ -138,7 +141,13 @@ watch(subtitle, () => {
 	padding: 1.5em;
 }
 
-.qr-code-button:hover,
+@media (hover: hover) and (pointer: fine) {
+	.qr-code-button:hover {
+		outline: 2px dashed currentColor;
+		outline-offset: -1.3em;
+	}
+}
+
 .qr-code-button:focus-visible,
 .qr-code-button:active {
 	outline: 2px dashed currentColor;
