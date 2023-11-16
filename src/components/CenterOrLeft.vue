@@ -3,12 +3,14 @@ import { ref, computed, watch, onMounted } from 'vue'
 import DownloadLink from '@/components/DownloadLink.vue'
 import { useHtmlToCanvas } from '@/use/htmlToCanvas'
 import { createFilename, blurOnEnter, resize } from '@/use/helper'
+import { useFontLoading } from '@/use/fontLoading'
 
 const props = defineProps<{
 	isLeft?: boolean
 }>()
 
 const { state } = useHtmlToCanvas()
+const { fontsReady } = useFontLoading()
 
 const headline = ref(props.isLeft ? 'Bauchbinde links' : 'Bauchbinde zentriert')
 const subtitle = ref(props.isLeft ? 'www.website.tld' : 'Untertitel')
@@ -18,6 +20,10 @@ const filename = computed(() => createFilename(headline.value))
 const headlineEl = ref(null)
 const subtitleEl = ref(null)
 onMounted(() => {
+	resize(headlineEl.value)
+	resize(subtitleEl.value)
+})
+watch(fontsReady, () => {
 	resize(headlineEl.value)
 	resize(subtitleEl.value)
 })

@@ -3,8 +3,10 @@ import { ref, computed, watch, onMounted } from 'vue'
 import DownloadLink from '@/components/DownloadLink.vue'
 import { useHtmlToCanvas } from '@/use/htmlToCanvas'
 import { createFilename, blurOnEnter, resize } from '@/use/helper'
+import { useFontLoading } from '@/use/fontLoading'
 
 const { state } = useHtmlToCanvas()
+const { fontsReady } = useFontLoading()
 
 const headline = ref('Bauchbinde mit QR-Code')
 const subtitle = ref('Untertitel')
@@ -26,6 +28,10 @@ const editQrCode = async () => {
 const headlineEl = ref(null)
 const subtitleEl = ref(null)
 onMounted(() => {
+	resize(headlineEl.value)
+	resize(subtitleEl.value)
+})
+watch(fontsReady, () => {
 	resize(headlineEl.value)
 	resize(subtitleEl.value)
 })

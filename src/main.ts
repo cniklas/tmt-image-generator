@@ -7,6 +7,10 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 
+import { useFontLoading } from './use/fontLoading'
+const { waitForFonts } = useFontLoading()
+waitForFonts()
+
 const app = createApp(App)
 app.use(router)
 app.mount('#app')
