@@ -121,20 +121,22 @@ watch(subtitle, () => {
 </template>
 
 <style>
-.route-center-qr .headline {
-	max-width: 111.5em;
-}
+.route-center-qr {
+	& .headline {
+		max-width: 111.5em;
 
-.route-center-qr .headline .input {
-	max-width: 62.9375rem;
-}
+		& .input {
+			max-width: 62.9375rem;
+		}
+	}
 
-.route-center-qr .subtitle {
-	max-width: 104em;
-}
+	& .subtitle {
+		max-width: 104em;
 
-.route-center-qr .subtitle .input {
-	max-width: 58rem;
+		& .input {
+			max-width: 58rem;
+		}
+	}
 }
 
 .qr-code-button {
@@ -143,6 +145,12 @@ watch(subtitle, () => {
 	right: 6.5em;
 	bottom: 6.5em;
 	padding: 1.5em;
+
+	&:focus-visible,
+	&:active {
+		outline: 2px dashed currentColor;
+		outline-offset: -1.3em;
+	}
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -150,11 +158,5 @@ watch(subtitle, () => {
 		outline: 2px dashed currentColor;
 		outline-offset: -1.3em;
 	}
-}
-
-.qr-code-button:focus-visible,
-.qr-code-button:active {
-	outline: 2px dashed currentColor;
-	outline-offset: -1.3em;
 }
 </style>

@@ -83,37 +83,41 @@ watch(subtitle, () => {
 </template>
 
 <style>
-.route-center .headline {
-	max-width: 181.2em;
+.route-center {
+	& .headline {
+		max-width: 181.2em;
+
+		& .input {
+			max-width: 106.5rem;
+		}
+	}
+
+	& .subtitle {
+		max-width: 169.8em;
+
+		& .input {
+			max-width: 99.125rem;
+		}
+	}
 }
 
-.route-center .headline .input {
-	max-width: 106.5rem;
-}
+.route-left {
+	& .headline {
+		margin-inline: 7.8em;
+		padding-inline: 3.6em;
 
-.route-left .headline {
-	margin-inline: 7.8em;
-	padding-inline: 3.6em;
-}
+		& .input {
+			max-width: 105.25rem;
+		}
+	}
 
-.route-left .headline .input {
-	max-width: 105.25rem;
-}
+	& .subtitle {
+		margin-inline: 9em;
+		padding-inline: 2.2em;
 
-.route-center .subtitle {
-	max-width: 169.8em;
-}
-
-.route-center .subtitle .input {
-	max-width: 99.125rem;
-}
-
-.route-left .subtitle {
-	margin-inline: 9em;
-	padding-inline: 2.2em;
-}
-
-.route-left .subtitle .input {
-	max-width: 105.5rem;
+		& .input {
+			max-width: 105.5rem;
+		}
+	}
 }
 </style>

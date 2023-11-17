@@ -50,75 +50,79 @@ const filename = computed(() => createFilename(headline.value))
 </template>
 
 <style>
-.golden-ratio .layers {
-	width: 61em;
-	padding: 17.4em 0 11.3em 10.9em;
-}
+.golden-ratio {
+	& .layers {
+		width: 61em;
+		padding: 17.4em 0 11.3em 10.9em;
 
-.golden-ratio .layers::before,
-.golden-ratio .layers::after {
-	content: '';
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	top: 0;
-}
+		&::before,
+		&::after {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			top: 0;
+		}
 
-.golden-ratio .layers::before {
-	background-color: theme('colors.peach');
-	transform: skewX(-2.015131deg);
-	transform-origin: right top;
-	width: 75em;
-	z-index: 10;
-}
+		&::before {
+			background-color: theme('colors.peach');
+			transform: skewX(-2.015131deg);
+			transform-origin: right top;
+			width: 75em;
+			z-index: 10;
+		}
 
-.golden-ratio .layers::after {
-	background-color: theme('colors.chocolate');
-	transform: skewX(7.281669deg);
-	transform-origin: right bottom;
-	width: 80em;
-	z-index: 11;
-}
+		&::after {
+			background-color: theme('colors.chocolate');
+			transform: skewX(7.281669deg);
+			transform-origin: right bottom;
+			width: 80em;
+			z-index: 11;
+		}
+	}
 
-.golden-ratio .headline :is(.input, .text) {
-	font-size: 5.6em;
-	line-height: 1.3214285; /* 74px */
-}
+	& .headline {
+		& :is(.input, .text) {
+			font-size: 5.6em;
+			line-height: 1.3214285; /* 74px */
+		}
 
-.golden-ratio .headline .input {
-	height: 1.32142857em; /* 74px */
-}
+		& .input {
+			height: 1.32142857em; /* 74px */
+		}
+	}
 
-.golden-ratio .copy {
-	margin-top: 2.7em;
-	max-height: calc(100% - 10.09844em); /* '.headline .input' height + margin-top */
-}
+	& .copy {
+		margin-top: 2.7em;
+		max-height: calc(100% - 10.09844em); /* '.headline .input' height + margin-top */
 
-.golden-ratio .copy :is(.textarea, .text) {
-	font-size: 3.5em;
-	line-height: 1.314285;
+		& :is(.textarea, .text) {
+			font-size: 3.5em;
+			line-height: 1.314285;
+		}
+	}
 }
 
 .route-block-right .golden-ratio {
 	justify-content: flex-end;
-}
 
-.route-block-right .golden-ratio .layers {
-	padding-left: 0;
-	padding-right: 11.3em;
-}
+	& .layers {
+		padding-left: 0;
+		padding-right: 11.3em;
 
-.route-block-right .golden-ratio .layers::before,
-.route-block-right .golden-ratio .layers::after {
-	left: auto;
-	right: 0;
-}
+		&::before,
+		&::after {
+			left: auto;
+			right: 0;
+		}
 
-.route-block-right .golden-ratio .layers::before {
-	transform: skew(2.015131deg);
-}
+		&::before {
+			transform: skew(2.015131deg);
+		}
 
-.route-block-right .golden-ratio .layers::after {
-	transform: skew(-7.281669deg);
+		&::after {
+			transform: skew(-7.281669deg);
+		}
+	}
 }
 </style>
