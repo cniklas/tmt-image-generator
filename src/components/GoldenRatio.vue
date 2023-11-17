@@ -49,7 +49,7 @@ const filename = computed(() => createFilename(headline.value))
 	</div>
 </template>
 
-<style lang="postcss">
+<style>
 .golden-ratio .layers {
 	width: 61em;
 	padding: 17.4em 0 11.3em 10.9em;
@@ -57,20 +57,24 @@ const filename = computed(() => createFilename(headline.value))
 
 .golden-ratio .layers::before,
 .golden-ratio .layers::after {
-	@apply absolute bottom-0 left-0 top-0 content-[''];
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	top: 0;
 }
 
 .golden-ratio .layers::before {
-	@apply bg-peach;
-	transform: skew(-2.015131deg);
+	background-color: theme('colors.peach');
+	transform: skewX(-2.015131deg);
 	transform-origin: right top;
 	width: 75em;
 	z-index: 10;
 }
 
 .golden-ratio .layers::after {
-	@apply bg-chocolate;
-	transform: skew(7.281669deg);
+	background-color: theme('colors.chocolate');
+	transform: skewX(7.281669deg);
 	transform-origin: right bottom;
 	width: 80em;
 	z-index: 11;
@@ -106,7 +110,8 @@ const filename = computed(() => createFilename(headline.value))
 
 .route-block-right .golden-ratio .layers::before,
 .route-block-right .golden-ratio .layers::after {
-	@apply left-auto right-0;
+	left: auto;
+	right: 0;
 }
 
 .route-block-right .golden-ratio .layers::before {

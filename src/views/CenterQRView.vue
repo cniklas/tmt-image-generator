@@ -126,7 +126,6 @@ watch(subtitle, () => {
 }
 
 .route-center-qr .headline .input {
-	/* width: calc(100vw - 8.5rem); /* → `.route-center .headline .input` */
 	max-width: 62.9375rem;
 }
 
@@ -135,7 +134,6 @@ watch(subtitle, () => {
 }
 
 .route-center-qr .subtitle .input {
-	/* width: calc(100vw - 8.5rem); /* → `.route-center .subtitle .input` */
 	max-width: 58rem;
 }
 

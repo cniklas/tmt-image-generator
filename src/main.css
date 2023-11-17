@@ -22,7 +22,7 @@ html {
 	scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
 }
 
-@media (min-width: 1920px) {
+@media (min-width: 120em) {
 	body {
 		overflow-x: hidden;
 	}
@@ -47,7 +47,19 @@ button:active {
 }
 
 #camera-button {
-	@apply absolute left-1/2 top-20 inline-grid h-14 w-14 -translate-x-1/2 place-content-center rounded-full border-4 border-current bg-gray-900 text-white shadow-[--button-shadow] hover:bg-gray-800;
+	@apply bg-gray-900 hover:bg-gray-800;
+	position: absolute;
+	left: 50%;
+	top: 5rem;
+	display: inline-grid;
+	height: 3.5rem;
+	width: 3.5rem;
+	transform: translateX(-50%);
+	place-content: center;
+	color: #fff;
+	border: 4px solid currentColor;
+	border-radius: 50%;
+	box-shadow: var(--button-shadow);
 	transition:
 		background-color 200ms cubic-bezier(0.4, 0, 0.6, 1),
 		transform 144ms ease-out;
@@ -55,7 +67,7 @@ button:active {
 
 #camera-button:hover,
 #camera-button:focus-visible {
-	@apply -translate-x-1/2 scale-[1.1];
+	transform: translateX(-50%) scale(1.1);
 }
 
 #camera-button:focus-visible,
@@ -80,13 +92,15 @@ button:active {
 
 .lower-third .headline::before,
 .lower-third .subtitle::before {
-	@apply absolute inset-0 content-[''];
-	transform: skew(-18deg);
+	content: '';
+	position: absolute;
+	inset: 0;
+	transform: skewX(-18deg);
 	z-index: -1;
 }
 
 .lower-third .headline::before {
-	@apply bg-chocolate;
+	background-color: theme('colors.chocolate');
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -126,7 +140,7 @@ button:active {
 }
 
 .lower-third .subtitle::before {
-	@apply bg-peach;
+	background-color: theme('colors.peach');
 }
 
 .lower-third .subtitle :is(.input, .text) {

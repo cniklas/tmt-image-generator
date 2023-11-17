@@ -88,7 +88,6 @@ watch(subtitle, () => {
 }
 
 .route-center .headline .input {
-	/* width: calc(100vw - 8.5rem); */
 	max-width: 106.5rem;
 }
 
@@ -98,7 +97,6 @@ watch(subtitle, () => {
 }
 
 .route-left .headline .input {
-	/* width: calc(100vw - 14.75rem); */
 	max-width: 105.25rem;
 }
 
@@ -107,7 +105,6 @@ watch(subtitle, () => {
 }
 
 .route-center .subtitle .input {
-	/* width: calc(100vw - 8.5rem); */
 	max-width: 99.125rem;
 }
 
@@ -117,7 +114,6 @@ watch(subtitle, () => {
 }
 
 .route-left .subtitle .input {
-	/* width: calc(100vw - 14.5rem); */
 	max-width: 105.5rem;
 }
 </style>
