@@ -63,16 +63,14 @@ button:active {
 	transition:
 		background-color 200ms cubic-bezier(0.4, 0, 0.6, 1),
 		transform 144ms ease-out;
-}
 
-#camera-button:hover,
-#camera-button:focus-visible {
-	transform: translateX(-50%) scale(1.1);
-}
+	&:is(:hover, :focus-visible) {
+		transform: translateX(-50%) scale(1.1);
+	}
 
-#camera-button:focus-visible,
-#camera-button:active {
-	@apply outline-gray-900;
+	&:is(:focus-visible, :active) {
+		@apply outline-gray-900;
+	}
 }
 
 #canvas {
@@ -114,9 +112,7 @@ button:active {
 	}
 }
 
-.headline .input:focus-visible,
-.subtitle .input:focus-visible,
-.copy .textarea:focus-visible {
+:is(.headline .input, .subtitle .input, .copy .textarea):focus-visible {
 	outline: 2px dashed currentColor;
 	outline-offset: 1px;
 }
