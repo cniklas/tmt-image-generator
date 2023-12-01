@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "html2canvas": "^1.4.1",
-    "vue": "^3.3.4",
+    "vue": "^3.3.9",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
