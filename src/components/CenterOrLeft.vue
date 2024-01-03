@@ -36,7 +36,7 @@ watch(subtitle, () => {
 </script>
 
 <template>
-	<DownloadLink :class="{ '!hidden': !state.isGenerated }" :image-src="state.imageSrc" :filename="filename" />
+	<DownloadLink :class="{ '!hidden': !state.isGenerated }" :image-src="state.imageSrc" :filename />
 
 	<div
 		id="canvas"

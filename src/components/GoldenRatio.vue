@@ -13,7 +13,7 @@ const filename = computed(() => createFilename(headline.value))
 </script>
 
 <template>
-	<DownloadLink :class="{ '!hidden': !state.isGenerated }" :image-src="state.imageSrc" :filename="filename" />
+	<DownloadLink :class="{ '!hidden': !state.isGenerated }" :image-src="state.imageSrc" :filename />
 
 	<div id="canvas" class="golden-ratio mx-auto flex overflow-x-hidden" :class="{ '!hidden': state.isGenerated }">
 		<div class="layers relative flex flex-col">
