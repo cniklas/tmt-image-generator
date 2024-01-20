@@ -17,7 +17,12 @@ const { state, generateImage } = useHtmlToCanvas()
 			<RouterLink to="/block-left">Textblock links</RouterLink>
 			<RouterLink to="/block-right">Textblock rechts</RouterLink>
 		</nav>
-		<a href="https://github.com/cniklas/tmt-image-generator" ping="https://cniklas.uber.space/backfeed-ep/cron/jobs/ncapkygazmxftqdhnmstdimn" class="absolute right-4 top-5 h-6 w-6" rel="noopener">
+		<a
+			href="https://github.com/cniklas/tmt-image-generator"
+			ping="https://cniklas.uber.space/backfeed-ep/cron/jobs/ncapkygazmxftqdhnmstdimn"
+			class="absolute right-4 top-5 h-6 w-6"
+			rel="noopener"
+		>
 			<span class="sr-only">GitHub repo</span>
 			<svg aria-hidden="true" class="h-6 w-6 fill-current" viewBox="0 0 16 16" width="24" height="24">
 				<path
