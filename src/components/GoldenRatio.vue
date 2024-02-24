@@ -17,7 +17,7 @@ const filename = computed(() => createFilename(headline.value))
 
 	<div id="canvas" class="golden-ratio mx-auto flex overflow-x-hidden" :class="{ '!hidden': state.isGenerated }">
 		<div class="layers relative flex flex-col">
-			<div class="headline text-peach relative z-20 font-bold">
+			<div class="headline relative z-20 font-bold text-[--peach]">
 				<input
 					v-model.trim="headline"
 					type="text"
@@ -31,7 +31,7 @@ const filename = computed(() => createFilename(headline.value))
 				</div>
 			</div>
 
-			<div class="copy text-peach relative z-20 flex-1 font-medium">
+			<div class="copy relative z-20 flex-1 font-medium text-[--peach]">
 				<textarea
 					v-model="copy"
 					class="textarea h-full w-full resize-none bg-transparent px-1 font-medium"
@@ -65,7 +65,7 @@ const filename = computed(() => createFilename(headline.value))
 		}
 
 		&::before {
-			background-color: theme('colors.peach');
+			background-color: var(--peach);
 			transform: skewX(-2.015131deg);
 			transform-origin: right top;
 			width: 75em;
@@ -73,7 +73,7 @@ const filename = computed(() => createFilename(headline.value))
 		}
 
 		&::after {
-			background-color: theme('colors.chocolate');
+			background-color: var(--chocolate);
 			transform: skewX(7.281669deg);
 			transform-origin: right bottom;
 			width: 80em;

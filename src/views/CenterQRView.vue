@@ -51,7 +51,7 @@ watch(subtitle, () => {
 		class="lower-third relative mx-auto flex flex-col items-center justify-end"
 		:class="{ '!hidden': state.isGenerated }"
 	>
-		<div class="headline text-peach relative z-10 font-semibold">
+		<div class="headline relative z-10 font-semibold text-[--peach]">
 			<input
 				ref="headlineEl"
 				v-model.trim="headline"
@@ -65,7 +65,7 @@ watch(subtitle, () => {
 				{{ headline }}
 			</div>
 		</div>
-		<div class="subtitle text-chocolate relative z-20 font-medium">
+		<div class="subtitle relative z-20 font-medium text-[--chocolate]">
 			<input
 				ref="subtitleEl"
 				v-model.trim="subtitle"
@@ -82,7 +82,7 @@ watch(subtitle, () => {
 
 		<button
 			type="button"
-			class="qr-code-button bg-chocolate text-peach absolute text-left"
+			class="qr-code-button absolute bg-[--chocolate] text-left text-[--peach]"
 			aria-label="URL für QR-Code eingeben"
 			@click="editQrCode"
 		>
@@ -111,7 +111,7 @@ watch(subtitle, () => {
 				v-model.lazy.trim="qrCode"
 				type="text"
 				placeholder="URL oder Rufnummer"
-				class="w-96 border-b-2 border-gray-800 px-2 py-1 placeholder-gray-500 focus-visible:outline-none"
+				class="w-96 border-b-2 border-[--gray-800] px-2 py-1 placeholder-[--gray-500] focus-visible:outline-none"
 				enterkeyhint="done"
 				@keyup.enter="blurOnEnter"
 				@blur="isQrCodeInputVisible = false"

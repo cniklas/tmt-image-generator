@@ -8,7 +8,7 @@ const { state, generateImage } = useHtmlToCanvas()
 <template>
 	<header id="navbar" class="fixed left-0 top-0 z-40 w-full" :class="{ 'opacity-30': state.isPainting }">
 		<nav
-			class="flex justify-center gap-x-5 border-t-4 border-pink-600 bg-white py-4 pb-5 font-medium text-gray-900"
+			class="flex justify-center gap-x-5 border-t-4 border-[--pink] bg-white py-4 pb-5 font-medium text-[--gray-900]"
 			:class="{ 'pointer-events-none': state.isPainting }"
 		>
 			<RouterLink to="/">Bauchbinde</RouterLink>

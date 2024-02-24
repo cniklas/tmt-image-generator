@@ -1,6 +1,6 @@
 {
   "name": "tmt-image-generator",
-  "version": "3.9.0",
+  "version": "3.10.0",
   "type": "module",
   "repository": {
     "type": "git",
@@ -27,7 +27,6 @@
     "@tsconfig/node18": "^18.2.2",
     "@types/node": "^20.11.15",
     "@unocss/reset": "^0.58.3",
-    "@unocss/transformer-directives": "^0.58.3",
     "@vitejs/plugin-vue": "^4.5.2",
     "@vue/eslint-config-prettier": "^9.0.0",
     "@vue/eslint-config-typescript": "^12.0.0",

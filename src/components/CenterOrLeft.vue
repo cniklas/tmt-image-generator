@@ -43,7 +43,7 @@ watch(subtitle, () => {
 		class="lower-third mx-auto flex flex-col justify-end"
 		:class="[isLeft ? 'items-baseline' : 'items-center', { '!hidden': state.isGenerated }]"
 	>
-		<div class="headline text-peach relative z-10 font-semibold">
+		<div class="headline relative z-10 font-semibold text-[--peach]">
 			<input
 				ref="headlineEl"
 				v-model.trim="headline"
@@ -61,7 +61,7 @@ watch(subtitle, () => {
 				{{ headline }}
 			</div>
 		</div>
-		<div class="subtitle text-chocolate relative z-20 font-medium">
+		<div class="subtitle relative z-20 font-medium text-[--chocolate]">
 			<input
 				ref="subtitleEl"
 				v-model.trim="subtitle"
