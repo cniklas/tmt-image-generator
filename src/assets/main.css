@@ -4,12 +4,14 @@
 	--scrollbar-thumb-color: oklch(70.37% 0.024 261.47);
 	--scrollbar-track-color: oklch(24.47% 0.075 260.52 / 8%);
 	--h2c-offset: 0;
-	--chocolate: oklch(41.15% 0.095 47.6);
-	--peach: oklch(86.48% 0.065 62.99);
 	--pink: oklch(59.16% 0.218 0.58); /* = theme('colors.pink.600') */
 	--gray-500: oklch(55.1% 0.023 264.36); /* = theme('colors.gray.500') */
 	--gray-800: oklch(27.81% 0.03 256.85); /* = theme('colors.gray.800') */
 	--gray-900: oklch(21.01% 0.032 264.66); /* = theme('colors.gray.900') */
+
+	/* html2canvas can't handle oklch */
+	--chocolate: #733816;
+	--peach: #f2caa7;
 }
 
 ::-webkit-scrollbar {
