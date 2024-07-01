@@ -1,6 +1,7 @@
 import { reactive, readonly, nextTick } from 'vue'
 import html2canvas from 'html2canvas'
 
+const isDevMode = import.meta.env.DEV
 const state = reactive({
 	isPainting: false,
 	isGenerated: false,
@@ -19,7 +20,7 @@ const generateImage = async () => {
 		const canvas = await html2canvas(document.querySelector('#canvas') as HTMLElement, {
 			backgroundColor: null,
 			useCORS: true,
-			logging: true,
+			logging: isDevMode,
 		})
 		state.isGenerated = true
 		state.imageSrc = canvas.toDataURL('image/png')
