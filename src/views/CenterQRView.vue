@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, watch, onMounted } from 'vue'
+import { ref, useTemplateRef, computed, watch, onMounted } from 'vue'
 import DownloadLink from '@/components/DownloadLink.vue'
 import { useHtmlToCanvas } from '@/use/htmlToCanvas'
 import { createFilename, blurOnEnter, resize } from '@/use/helper'
@@ -14,7 +14,7 @@ const subtitle = ref('Untertitel')
 const filename = computed(() => createFilename(headline.value))
 
 const qrCode = ref('')
-const qrCodeEl = ref<HTMLInputElement | null>(null)
+const qrCodeEl = useTemplateRef<HTMLInputElement | null>('qrCodeEl')
 const isQrCodeInputVisible = ref(false)
 
 const editQrCode = async () => {
@@ -25,8 +25,8 @@ const editQrCode = async () => {
 	qrCodeEl.value?.focus()
 }
 
-const headlineEl = ref(null)
-const subtitleEl = ref(null)
+const headlineEl = useTemplateRef<HTMLInputElement | null>('headlineEl')
+const subtitleEl = useTemplateRef<HTMLInputElement | null>('subtitleEl')
 onMounted(() => {
 	resize(headlineEl.value)
 	resize(subtitleEl.value)

@@ -1,24 +1,24 @@
 <script setup lang="ts">
-import { ref, computed, watch, onMounted } from 'vue'
+import { ref, useTemplateRef, computed, watch, onMounted } from 'vue'
 import DownloadLink from '@/components/DownloadLink.vue'
 import { useHtmlToCanvas } from '@/use/htmlToCanvas'
 import { createFilename, blurOnEnter, resize } from '@/use/helper'
 import { useFontLoading } from '@/use/fontLoading'
 
-const props = defineProps<{
+const { isLeft } = defineProps<{
 	isLeft?: boolean
 }>()
 
 const { state } = useHtmlToCanvas()
 const { fontsReady } = useFontLoading()
 
-const headline = ref(props.isLeft ? 'Bauchbinde links' : 'Bauchbinde zentriert')
-const subtitle = ref(props.isLeft ? 'www.website.tld' : 'Untertitel')
+const headline = ref(isLeft ? 'Bauchbinde links' : 'Bauchbinde zentriert')
+const subtitle = ref(isLeft ? 'www.website.tld' : 'Untertitel')
 
 const filename = computed(() => createFilename(headline.value))
 
-const headlineEl = ref(null)
-const subtitleEl = ref(null)
+const headlineEl = useTemplateRef<HTMLInputElement | null>('headlineEl')
+const subtitleEl = useTemplateRef<HTMLInputElement | null>('subtitleEl')
 onMounted(() => {
 	resize(headlineEl.value)
 	resize(subtitleEl.value)
