@@ -14,7 +14,7 @@ const subtitle = ref('Untertitel')
 const filename = computed(() => createFilename(headline.value))
 
 const qrCode = ref('')
-const qrCodeEl = useTemplateRef<HTMLInputElement | null>('qrCodeInput')
+const qrCodeEl = useTemplateRef<HTMLInputElement | null>('qrCodeEl')
 const isQrCodeInputVisible = ref(false)
 
 const editQrCode = async () => {
@@ -25,8 +25,8 @@ const editQrCode = async () => {
 	qrCodeEl.value?.focus()
 }
 
-const headlineEl = useTemplateRef<HTMLInputElement | null>('headlineInput')
-const subtitleEl = useTemplateRef<HTMLInputElement | null>('subtitleInput')
+const headlineEl = useTemplateRef<HTMLInputElement | null>('headlineEl')
+const subtitleEl = useTemplateRef<HTMLInputElement | null>('subtitleEl')
 onMounted(() => {
 	resize(headlineEl.value)
 	resize(subtitleEl.value)
@@ -53,7 +53,7 @@ watch(subtitle, () => {
 	>
 		<div class="headline relative z-10 font-semibold text-[--peach]">
 			<input
-				ref="headlineInput"
+				ref="headlineEl"
 				v-model.trim="headline"
 				type="text"
 				class="input bg-transparent px-1 font-semibold"
@@ -67,7 +67,7 @@ watch(subtitle, () => {
 		</div>
 		<div class="subtitle relative z-20 font-medium text-[--chocolate]">
 			<input
-				ref="subtitleInput"
+				ref="subtitleEl"
 				v-model.trim="subtitle"
 				type="text"
 				class="input bg-transparent px-1 font-medium"
@@ -107,7 +107,7 @@ watch(subtitle, () => {
 			data-html2canvas-ignore
 		>
 			<input
-				ref="qrCodeInput"
+				ref="qrCodeEl"
 				v-model.lazy.trim="qrCode"
 				type="text"
 				placeholder="URL oder Rufnummer"

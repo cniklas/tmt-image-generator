@@ -17,8 +17,8 @@ const subtitle = ref(isLeft ? 'www.website.tld' : 'Untertitel')
 
 const filename = computed(() => createFilename(headline.value))
 
-const headlineEl = useTemplateRef<HTMLInputElement | null>('headlineInput')
-const subtitleEl = useTemplateRef<HTMLInputElement | null>('subtitleInput')
+const headlineEl = useTemplateRef<HTMLInputElement | null>('headlineEl')
+const subtitleEl = useTemplateRef<HTMLInputElement | null>('subtitleEl')
 onMounted(() => {
 	resize(headlineEl.value)
 	resize(subtitleEl.value)
@@ -45,7 +45,7 @@ watch(subtitle, () => {
 	>
 		<div class="headline relative z-10 font-semibold text-[--peach]">
 			<input
-				ref="headlineInput"
+				ref="headlineEl"
 				v-model.trim="headline"
 				type="text"
 				class="input bg-transparent px-1 font-semibold"
@@ -63,7 +63,7 @@ watch(subtitle, () => {
 		</div>
 		<div class="subtitle relative z-20 font-medium text-[--chocolate]">
 			<input
-				ref="subtitleInput"
+				ref="subtitleEl"
 				v-model.trim="subtitle"
 				type="text"
 				class="input bg-transparent px-1 font-medium"
