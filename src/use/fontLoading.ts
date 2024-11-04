@@ -4,10 +4,9 @@ const fontsReady = ref(false)
 
 const waitForFonts = async () => {
 	const fontFaceSet = await document.fonts.ready
-	const fontFaces = [...fontFaceSet].filter(fontFace => ['500', '600'].includes(fontFace.weight))
 	// // some fonts may still be unloaded if they aren't used on the site
-	// console.log(fontFaces.map(f => f.status))
-	fontFaces.forEach(async fontFace => {
+	fontFaceSet.forEach(async fontFace => {
+		if (!['500', '600'].includes(fontFace.weight)) return
 		await fontFace.loaded
 		// console.log('%s %s loaded', fontFace.family, fontFace.weight)
 		fontsReady.value = true
