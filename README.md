@@ -1,46 +1,8 @@
 # TMT Image Generator
 
-This template should help get you started developing with Vue 3 in Vite.
+A friend of mine asked me if I could build him a tool to create [lower thirds](https://en.wikipedia.org/wiki/Lower_third) without having to install an image editing programme. He wanted to be able to create these lower thirds quickly and spontaneously during a video livestream and use them in his streaming software. So I built this for him.
 
-## Recommended IDE Setup
+There are five templates where you can edit a headline and a subline or a longer text block. There is also the option to display a customised QR code.  
+With the help of [html2canvas](https://github.com/niklasvh/html2canvas), an image file with a transparent background is created from the website, which can be downloaded directly to the computer.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+As you can see from the Git history, I first used [Svelte](https://svelte.dev/), but kept having difficulties updating the dependencies. That's why I finally decided in favour of [Vue](https://vuejs.org/).
