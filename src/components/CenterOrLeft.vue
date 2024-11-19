@@ -17,8 +17,8 @@ const subtitle = ref(isLeft ? 'www.website.tld' : 'Untertitel')
 
 const filename = computed(() => createFilename(headline.value))
 
-const headlineEl = useTemplateRef<HTMLInputElement | null>('headlineEl')
-const subtitleEl = useTemplateRef<HTMLInputElement | null>('subtitleEl')
+const headlineEl = useTemplateRef('headlineEl')
+const subtitleEl = useTemplateRef('subtitleEl')
 onMounted(() => {
 	resize(headlineEl.value)
 	resize(subtitleEl.value)

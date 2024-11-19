@@ -14,7 +14,7 @@ const subtitle = ref('Untertitel')
 const filename = computed(() => createFilename(headline.value))
 
 const qrCode = ref('')
-const qrCodeEl = useTemplateRef<HTMLInputElement | null>('qrCodeEl')
+const qrCodeEl = useTemplateRef('qrCodeEl')
 const isQrCodeInputVisible = ref(false)
 
 const editQrCode = async () => {
@@ -25,8 +25,8 @@ const editQrCode = async () => {
 	qrCodeEl.value?.focus()
 }
 
-const headlineEl = useTemplateRef<HTMLInputElement | null>('headlineEl')
-const subtitleEl = useTemplateRef<HTMLInputElement | null>('subtitleEl')
+const headlineEl = useTemplateRef('headlineEl')
+const subtitleEl = useTemplateRef('subtitleEl')
 onMounted(() => {
 	resize(headlineEl.value)
 	resize(subtitleEl.value)
