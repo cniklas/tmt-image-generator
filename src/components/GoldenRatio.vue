@@ -34,7 +34,7 @@ const filename = computed(() => createFilename(headline.value))
 			<div class="copy relative z-20 flex-1 font-medium text-[--peach]">
 				<textarea
 					v-model="copy"
-					class="textarea h-full w-full resize-none bg-transparent px-1 font-medium"
+					class="textarea size-full resize-none bg-transparent px-1 font-medium"
 					:class="{ '!hidden': state.isPainting }"
 				/>
 				<div
