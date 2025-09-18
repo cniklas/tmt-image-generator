@@ -146,7 +146,7 @@ watch(subtitle, () => {
 	bottom: 6.5em;
 	padding: 1.5em;
 
-	&:is(:focus-visible, :active) {
+	&:focus-visible {
 		outline: 2px dashed currentColor;
 		outline-offset: -1.3em;
 	}
