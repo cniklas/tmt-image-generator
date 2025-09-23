@@ -17,7 +17,7 @@ const generateImage = async () => {
 
 	try {
 		// `useCORS: true` wird für die QR-Code-API benötigt
-		const canvas = await html2canvas(document.querySelector('#canvas') as HTMLElement, {
+		const canvas = await html2canvas(document.querySelector('#canvas')!, {
 			backgroundColor: null,
 			useCORS: true,
 			logging: isDevMode,
