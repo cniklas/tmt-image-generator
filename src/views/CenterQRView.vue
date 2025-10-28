@@ -22,7 +22,7 @@ const editQrCode = async () => {
 
 	// wait before focussing the input element because otherwise the input keyup event is triggered
 	await new Promise(resolve => setTimeout(resolve, 100))
-	qrCodeEl.value?.focus()
+	qrCodeEl.value!.focus()
 }
 
 const headlineEl = useTemplateRef('headlineEl')
