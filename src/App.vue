@@ -5,7 +5,7 @@ const { state, generateImage } = useHtmlToCanvas()
 </script>
 
 <template>
-	<header id="navbar" class="fixed left-0 top-0 z-40 w-full" :class="{ 'opacity-30': state.isPainting }">
+	<header id="navbar" class="fixed top-0 left-0 z-40 w-full" :class="{ 'opacity-30': state.isPainting }">
 		<nav
 			class="flex justify-center gap-x-5 border-t-4 border-[--pink] bg-white py-4 pb-5 font-medium text-[--gray-900]"
 			:class="{ 'pointer-events-none': state.isPainting }"
@@ -18,10 +18,10 @@ const { state, generateImage } = useHtmlToCanvas()
 		</nav>
 		<a
 			href="https://github.com/cniklas/tmt-image-generator"
-			class="absolute right-4 top-5 size-6 rounded-xl"
-			aria-label="GitHub repo"
+			class="absolute top-5 right-4 size-6 rounded-xl"
 			rel="noopener"
 		>
+			<span class="sr-only">GitHub repo</span>
 			<svg aria-hidden="true" class="size-6 fill-current" viewBox="0 0 16 16" width="24" height="24">
 				<path
 					fill-rule="evenodd"
