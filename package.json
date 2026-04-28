@@ -1,6 +1,6 @@
 {
   "name": "tmt-image-generator",
-  "version": "3.21.0",
+  "version": "3.22.0",
   "type": "module",
   "repository": {
     "type": "git",
@@ -19,25 +19,28 @@
   },
   "dependencies": {
     "html2canvas": "^1.4.1",
-    "vue": "^3.5.29",
+    "vue": "^3.5.32",
     "vue-router": "^5.0.4"
   },
   "devDependencies": {
-    "@tsconfig/node22": "^22.0.5",
-    "@types/node": "^25.5.0",
+    "@tsconfig/node24": "^24.0.4",
+    "@types/node": "^25.6.0",
     "@unocss/reset": "^66.6.7",
-    "@vitejs/plugin-vue": "^6.0.5",
-    "@vue/eslint-config-prettier": "^10.2.0",
+    "@vitejs/plugin-vue": "^6.0.6",
     "@vue/eslint-config-typescript": "^14.7.0",
     "@vue/tsconfig": "^0.9.1",
-    "eslint": "^10.1.0",
+    "eslint": "^10.2.1",
+    "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-vue": "^10.8.0",
     "npm-run-all2": "^8.0.4",
-    "prettier": "^3.7.4",
-    "prettier-plugin-tailwindcss": "^0.7.2",
+    "prettier": "3.8.3",
+    "prettier-plugin-tailwindcss": "^0.8.0",
     "typescript": "~6.0.2",
     "unocss": "^66.6.7",
-    "vite": "^8.0.5",
+    "vite": "^8.0.8",
     "vue-tsc": "^3.2.6"
+  },
+  "engines": {
+    "node": ">=22.12.0"
   }
 }
