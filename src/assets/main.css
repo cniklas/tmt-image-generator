@@ -68,27 +68,20 @@ button {
 }
 
 #camera-button {
-	background-color: var(--gray-900);
+	background-color: #fff;
 	position: absolute;
 	left: 50%;
 	top: 5rem;
-	display: inline-grid;
+	display: grid;
 	height: 3.5rem;
 	width: 3.5rem;
 	translate: -50%;
 	place-content: center;
-	color: #fff;
+	color: var(--gray-900);
 	border-radius: 50%;
 	overflow: clip;
 	box-shadow: var(--button-shadow);
-
-	&:hover {
-		background-color: var(--gray-800);
-	}
-
-	&:focus-visible {
-		outline-color: var(--gray-900);
-	}
+	border: 2px solid currentColor;
 }
 
 #canvas {
@@ -170,5 +163,26 @@ button {
 			width: max-content;
 			height: 1.3428571em; /* 47px */
 		}
+	}
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.github-corner:hover .octo-arm {
+		animation: octocat-wave 560ms ease-in-out;
+	}
+}
+
+@keyframes octocat-wave {
+	0%,
+	100% {
+		transform: rotate(0);
+	}
+	20%,
+	60% {
+		transform: rotate(-25deg);
+	}
+	40%,
+	80% {
+		transform: rotate(10deg);
 	}
 }
