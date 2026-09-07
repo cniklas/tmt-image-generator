@@ -16,14 +16,22 @@ const generateImage = async () => {
 	await nextTick()
 
 	try {
-		// `useCORS: true` wird für die QR-Code-API benötigt
-		const canvas = await html2canvas(document.querySelector('#canvas')!, {
+		const el = document.querySelector('#canvas') as HTMLElement
+		const canvas = await html2canvas(el, {
 			backgroundColor: null,
-			useCORS: true,
+			useCORS: true, // wird für die QR-Code-API benötigt
 			logging: isDevMode,
 		})
+
+		// Ausgabe-Canvas in der ursprünglichen CSS-Größe
+		const outputCanvas = document.createElement('canvas')
+		outputCanvas.width = el.clientWidth
+		outputCanvas.height = el.clientHeight
+		const context = outputCanvas.getContext('2d')!
+		context.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, outputCanvas.width, outputCanvas.height)
+
 		state.isGenerated = true
-		state.imageSrc = canvas.toDataURL('image/png')
+		state.imageSrc = outputCanvas.toDataURL('image/png')
 	} catch (error) {
 		console.error(error)
 	} finally {
