@@ -90,8 +90,8 @@ button {
 	font-size: 0.625rem;
 	line-height: 1;
 
-	height: 1080px;
 	width: var(--canvas-width);
+	aspect-ratio: 16 / 9;
 }
 
 .lower-third {
